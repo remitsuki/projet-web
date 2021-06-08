@@ -131,18 +131,13 @@ require("config/commandes.php");
               <form class="needs-validation">
                 <div class="form-group form-check">
                   <label for="selection_pays" class="form-label">Choisir une ou plusieurs marques :</label>
-                  <select id="selection_pays" class="form-select" required>
-                    <option selected="yes" value="">Marque</option>
+                  <select id="selection_pays" multiple class="form-select" required>
+                    <option selected>Toutes</option>
+                    <?php $sauces = recupermarque();
+                    foreach ($sauces as $sauce) : ?>
+                      <option><?= $sauce->marque ?></option>
+                    <?php endforeach; ?>
                   </select>
-                  <div class="invalid-feedback" id="paspays" style="display: none;">
-                    Veuillez choisir un pays correct.
-                  </div>
-                  <div class="valid-feedback" id="pays" style="display: none;">
-                    Votre selection a été enrigstrée.
-                  </div>
-                  <div>
-                    <input type="submit" name="submit" value="Submit" class="btn btn-primary">
-                  </div>
                 </div>
               </form>
             </li>
@@ -157,6 +152,22 @@ require("config/commandes.php");
 
             </div>
           </div>
+          <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+              <li class="page-item">
+              <button class="page-link" type="button" onclick="AllerALaPage(1)">
+                  1
+              </li>
+              <li class="page-item">
+              <button class="page-link" type="button" onclick="AllerALaPage(2)">
+                  2
+              </li>
+              <li class="page-item">
+              <button class="page-link" type="button" onclick="AllerALaPage(3)">
+                  3
+              </li>
+            </ul>
+          </nav>
         </div>
       </main>
     </div>
@@ -164,7 +175,7 @@ require("config/commandes.php");
 
   <footer class="text-muted py-5">
     <div class="container">
-    <iframe src="https://open.spotify.com/embed/track/2ChNJTAMVSDEc8hsdiF1Vs" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+      <iframe src="https://open.spotify.com/embed/track/2ChNJTAMVSDEc8hsdiF1Vs" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
       <p class="float-end mb-1">
         <a href="#">Back to top</a>
       </p>
@@ -178,7 +189,8 @@ require("config/commandes.php");
     function AffichageParDefaut() {
       Affichage(69);
     }
-
+    var page = 1;
+    var tri = 69;
     var unefoissurdeux = true;
     document.getElementById("BoutonCote").onclick = function() {
       if (unefoissurdeux) {
@@ -201,7 +213,7 @@ require("config/commandes.php");
         unefoissurdeux = true;
         tri = 3;
       }
-      Affichage(tri);
+      Affichage();
     };
 
     var unefoissurdeuxPrix = false;
@@ -215,16 +227,23 @@ require("config/commandes.php");
         unefoissurdeux = true;
         tri = 1;
       }
-      Affichage(tri);
+      Affichage();
     };
 
-    function Affichage(typetri) {
+    function AllerALaPage(numeropage)
+    {
+      page = numeropage;
+      Affichage();
+    }
+
+    function Affichage() {
       $.ajax({
         type: "GET",
         url: 'config/affichage.php',
         dataType: 'json',
         data: {
-          tri: typetri
+          tri: tri,
+          page: page,
         },
         success: function(obj) {
           document.getElementById("produitsboite").innerHTML = obj.result;
