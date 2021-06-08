@@ -1,7 +1,2 @@
 # projet-web
 
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaah
-bonjour
-prout
-pd
-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
