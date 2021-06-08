@@ -50,12 +50,20 @@ require("config/commandes.php");
             <p class="text-muted">Une sauce est une préparation culinaire, froide, tiède ou chaude, destinée à être servie avec un mets salé ou sucré. Composée d'un simple jus ou d'un apprêt très élaboré, la sauce peut servir d'accompagnement, comme la mayonnaise, la béarnaise ou le coulis de fruits, mais aussi d'élément de cuisson, comme pour une daube ou un ragoût. D'une grande diversité, les sauces sont d'une consistance plus ou moins liquide que l'on peut détendre ou épaissir ; elles sont faites à partir de mélange à froid comme la vinaigrette, tiède comme l'émulsion au beurre d'une béarnaise, ou à chaud comme les déglaçages au vin, ou toutes sortes de fonds. Chacune d'elles peut être déclinée et agrémentée d'herbes, aromates, épices, colorants, alcools, mais aussi tomates, jus de fruits, de fromage ou autre foie gras.</p>
           </div>
           <div class="col-sm-4 offset-md-1 py-4">
-            <h4 class="text-white">Contact</h4>
-            <ul class="list-unstyled">
-              <li><a href="#" class="text-white">Follow on Twitter</a></li>
-              <li><a href="#" class="text-white">Like on Facebook</a></li>
-              <li><a href="#" class="text-white">Email me</a></li>
-            </ul>
+            <form>
+              <h1 class="h3 mb-3 fw-normal text-white">Please sign in</h1>
+
+              <div class="form-floating">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Email address</label>
+              </div>
+              <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Password</label>
+              </div>
+              
+              <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+            </form>
           </div>
         </div>
       </div>
@@ -129,7 +137,7 @@ require("config/commandes.php");
         <div class="album py-5 bg-light">
           <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="produitsboite" name="produitsboite">
-              
+
             </div>
           </div>
         </div>
@@ -166,14 +174,11 @@ require("config/commandes.php");
 
     var unefoissurdeuxAlph = true;
     document.getElementById("alphabet").onclick = function() {
-      if (unefoissurdeux)
-      {
+      if (unefoissurdeux) {
         Affichage(2);
         document.getElementById("A-Z").innerHTML = "Z-A"
         unefoissurdeux = false;
-      }
-      else
-      {
+      } else {
         Affichage(3);
         document.getElementById("A-Z").innerHTML = "A-Z"
         unefoissurdeux = true;
@@ -181,24 +186,19 @@ require("config/commandes.php");
     };
 
     var unefoissurdeuxPrix = false;
-    document.getElementById("prix").onclick = function()
-    {
-      if (unefoissurdeux)
-      {
+    document.getElementById("prix").onclick = function() {
+      if (unefoissurdeux) {
         Affichage(0);
         document.getElementById("stonks").style = "transform: rotate(90deg);"
         unefoissurdeux = false;
-      }
-      else
-      {
+      } else {
         Affichage(1);
         document.getElementById("stonks").style = "transform: rotate(0deg);"
         unefoissurdeux = true;
       }
     };
 
-    function Affichage(typetri)
-    {
+    function Affichage(typetri) {
       $.ajax({
         type: "GET",
         url: 'config/affichage.php',
@@ -206,10 +206,9 @@ require("config/commandes.php");
         data: {
           tri: typetri
         },
-        success: function(obj)
-        {
+        success: function(obj) {
           document.getElementById("produitsboite").innerHTML = obj.result;
-        },        
+        },
       });
     }
   </script>
