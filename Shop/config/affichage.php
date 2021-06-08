@@ -28,30 +28,36 @@ $data = $req->fetchAll(PDO::FETCH_OBJ);
 
 $obj['result'] = "";
 $nbproduits = 0;
-foreach ($data as $sauce)
-{
-    if($nbproduits < $_GET['page'] * 9 AND $nbproduits >= $_GET['page'] * 9 - 9)
-    {
+foreach ($data as $sauce) {
+    if ($nbproduits < $_GET['page'] * 9 and $nbproduits >= $_GET['page'] * 9 - 9) {
         $obj['result'] = $obj['result'] .
-        '<div class="col">
+            '<div class="col">
         <div class="card shadow-sm">
-          <title> '. $sauce->nom .' </title>
-          <img src=" '. $sauce->image .' " style="max-height: 500px;">
+          <title> ' . $sauce->nom . ' </title>
+          <img src=" ' . $sauce->image . ' " style="max-height: 500px;">
           <div class="card-body">
-            <h4 class="card-text" style="text-align:center"> '. $sauce->nom .' </h4>
+            <h4 class="card-text" style="text-align:center"> ' . $sauce->nom . ' </h4>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
                 <button type="button" class="btn btn-sm btn-outline-secondary">Ajouter au panier</button>
                 <button type="button" class="btn btn-sm btn-outline-secondary">Acheter</button>
               </div>
-              <small class="text-muted"> '. $sauce->prix .' €</small>
+              <small class="text-muted"> ' . $sauce->prix . ' €</small>
             </div>
           </div>
         </div>
-      </div>'
-        ;
+      </div>';
     }
-    $nbproduits ++;
+    $nbproduits++;
+}
+$nombredepages = ($nbproduits + 8) / 9;
+$obj['pagination'] = "";
+for ($numeropage = 1; $numeropage <= $nombredepages; $numeropage++) {
+    $obj['pagination'] = $obj['pagination'] .
+        '<li class="page-item">
+      <button class="page-link" type="button" onclick="AllerALaPage(' . $numeropage . ')">'
+        . $numeropage .
+        '</li>';
 }
 
 echo json_encode($obj);

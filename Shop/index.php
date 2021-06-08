@@ -1,5 +1,6 @@
 <?php
 require("config/commandes.php");
+$nombredepages = 1;
 
 ?>
 
@@ -153,19 +154,8 @@ require("config/commandes.php");
             </div>
           </div>
           <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-              <li class="page-item">
-              <button class="page-link" type="button" onclick="AllerALaPage(1)">
-                  1
-              </li>
-              <li class="page-item">
-              <button class="page-link" type="button" onclick="AllerALaPage(2)">
-                  2
-              </li>
-              <li class="page-item">
-              <button class="page-link" type="button" onclick="AllerALaPage(3)">
-                  3
-              </li>
+            <ul class="pagination justify-content-center" id = "pagination">
+
             </ul>
           </nav>
         </div>
@@ -186,11 +176,14 @@ require("config/commandes.php");
   </footer>
 
   <script>
-    function AffichageParDefaut() {
-      Affichage(69);
-    }
     var page = 1;
     var tri = 69;
+
+
+    function AffichageParDefaut() {
+      Affichage();
+    }
+
     var unefoissurdeux = true;
     document.getElementById("BoutonCote").onclick = function() {
       if (unefoissurdeux) {
@@ -213,6 +206,7 @@ require("config/commandes.php");
         unefoissurdeux = true;
         tri = 3;
       }
+      page = 1;
       Affichage();
     };
 
@@ -227,11 +221,11 @@ require("config/commandes.php");
         unefoissurdeux = true;
         tri = 1;
       }
+      page = 1;
       Affichage();
     };
 
-    function AllerALaPage(numeropage)
-    {
+    function AllerALaPage(numeropage) {
       page = numeropage;
       Affichage();
     }
@@ -247,8 +241,10 @@ require("config/commandes.php");
         },
         success: function(obj) {
           document.getElementById("produitsboite").innerHTML = obj.result;
+          document.getElementById("pagination").innerHTML = obj.pagination;
         },
       });
+      window.location.href = "#";
     }
   </script>
 </body>
