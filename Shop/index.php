@@ -46,7 +46,7 @@ require("config/commandes.php");
       <div class="container">
         <div class="row">
           <div class="col-sm-8 col-md-7 py-4">
-            <h4 class="text-white">About</h4>
+            <h4 class="text-white">A propos de nos merveilleuses sauces</h4>
             <p class="text-muted">Une sauce est une préparation culinaire, froide, tiède ou chaude, destinée à être servie avec un mets salé ou sucré. Composée d'un simple jus ou d'un apprêt très élaboré, la sauce peut servir d'accompagnement, comme la mayonnaise, la béarnaise ou le coulis de fruits, mais aussi d'élément de cuisson, comme pour une daube ou un ragoût. D'une grande diversité, les sauces sont d'une consistance plus ou moins liquide que l'on peut détendre ou épaissir ; elles sont faites à partir de mélange à froid comme la vinaigrette, tiède comme l'émulsion au beurre d'une béarnaise, ou à chaud comme les déglaçages au vin, ou toutes sortes de fonds. Chacune d'elles peut être déclinée et agrémentée d'herbes, aromates, épices, colorants, alcools, mais aussi tomates, jus de fruits, de fromage ou autre foie gras.</p>
           </div>
           <div class="col-sm-4 offset-md-1 py-4">
@@ -61,8 +61,12 @@ require("config/commandes.php");
                 <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
                 <label for="floatingPassword">Password</label>
               </div>
-              
               <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+              <div class="form-floating text-white">
+                <h6>
+                  Pas encore <a href ="Inscription.php">inscrit</a> ?
+                </h6>
+              </div>
             </form>
           </div>
         </div>
