@@ -64,7 +64,7 @@ require("config/commandes.php");
               <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
               <div class="form-floating text-white">
                 <h6>
-                  Pas encore <a href ="Inscription.php">inscrit</a> ?
+                  Pas encore <a href="Inscription.php">inscrit</a> ?
                 </h6>
               </div>
             </form>
@@ -128,10 +128,23 @@ require("config/commandes.php");
               </a>
             </h6>
             <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span data-feather="shopping-cart">Products</span>
-
-              </a>
+              <form class="needs-validation">
+                <div class="form-group form-check">
+                  <label for="selection_pays" class="form-label">Choisir une ou plusieurs marques :</label>
+                  <select id="selection_pays" class="form-select" required>
+                    <option selected="yes" value="">Marque</option>
+                  </select>
+                  <div class="invalid-feedback" id="paspays" style="display: none;">
+                    Veuillez choisir un pays correct.
+                  </div>
+                  <div class="valid-feedback" id="pays" style="display: none;">
+                    Votre selection a été enrigstrée.
+                  </div>
+                  <div>
+                    <input type="submit" name="submit" value="Submit" class="btn btn-primary">
+                  </div>
+                </div>
+              </form>
             </li>
           </ul>
 
@@ -151,6 +164,7 @@ require("config/commandes.php");
 
   <footer class="text-muted py-5">
     <div class="container">
+    <iframe src="https://open.spotify.com/embed/track/2ChNJTAMVSDEc8hsdiF1Vs" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
       <p class="float-end mb-1">
         <a href="#">Back to top</a>
       </p>
@@ -179,27 +193,29 @@ require("config/commandes.php");
     var unefoissurdeuxAlph = true;
     document.getElementById("alphabet").onclick = function() {
       if (unefoissurdeux) {
-        Affichage(2);
         document.getElementById("A-Z").innerHTML = "Z-A"
         unefoissurdeux = false;
+        tri = 2;
       } else {
-        Affichage(3);
         document.getElementById("A-Z").innerHTML = "A-Z"
         unefoissurdeux = true;
+        tri = 3;
       }
+      Affichage(tri);
     };
 
     var unefoissurdeuxPrix = false;
     document.getElementById("prix").onclick = function() {
       if (unefoissurdeux) {
-        Affichage(0);
         document.getElementById("stonks").style = "transform: rotate(90deg);"
         unefoissurdeux = false;
+        tri = 0;
       } else {
-        Affichage(1);
         document.getElementById("stonks").style = "transform: rotate(0deg);"
         unefoissurdeux = true;
+        tri = 1;
       }
+      Affichage(tri);
     };
 
     function Affichage(typetri) {
