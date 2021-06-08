@@ -2,7 +2,7 @@
 
 
 a. afficher la liste de tous les articles (avec un ordre par défaut qui sera
-défini par un administrateur du site) ayant une quantité > 0 (1)
+défini par un administrateur du site) ayant une quantité > 0 (1) (fait)
 b. ordonner cette liste par nom de l’article (croissant ou décroissant) ou
 par prix (croissant ou décroissant aussi) (1+1=2)
 c. voir sur un panneau à gauche de la page une liste de filtre. Il pourra
@@ -14,7 +14,7 @@ pour tester). S’il essaye d’accéder à une page supérieure au max de
 pages qu’il peut avoir, on le renvoie sur la page 1. (1+1=2)
 e. s’il choisit de filtrer et/ou trier la liste, le nouveau résultat revient à la
 page 1 (1)
-f. cacher ou montrer des filtres(1)
+f. cacher ou montrer des filtres(1) (fait)
 g. ajouter un article à son panier directement depuis la liste (1+1(ajax)=2)
 h. accéder à son panier qui devra montrer tous les articles de son panier
 avec leurs prix, et la somme totale (1)
