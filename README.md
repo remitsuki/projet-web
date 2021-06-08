@@ -30,3 +30,7 @@ juste de connecter) (1)
 c. Payer ses articles (un faux payement avec juste une fausse CB) (1)
 d. Voir la liste de ses commandes (date, nombre d’articles et total de la
 commande) (1)
+
+
+déclaration d'intention:
+
