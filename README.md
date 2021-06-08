@@ -1,7 +1,7 @@
 # projet-web
 
--affichage des  produits (fait)\n
--triage des produits (à faire)\n
--page d'inscription(fait)\n
+-affichage des  produits (fait)
+-triage des produits (à faire)
+-page d'inscription(fait)
 -inscription(à faire)
 -page de payement (à faire)
