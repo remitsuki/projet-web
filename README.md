@@ -33,4 +33,5 @@ commande) (1)
 
 
 déclaration d'intention:
+Moi rémi je compte faire la page de payement
 
