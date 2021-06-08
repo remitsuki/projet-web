@@ -33,5 +33,8 @@ commande) (1)
 
 
 déclaration d'intention:
-Moi rémi je compte faire la page de payement
+-Rémi fait la page de payement
+-Duo AbVain on fait le shop avec l'affichage des produits : de a à f
+-Saad connexion / inscription
+-Felix fait l'administration du site (insertion de produits dans la base)
 
