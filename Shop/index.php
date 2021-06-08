@@ -63,7 +63,7 @@ require("config/commandes.php");
     <div class="navbar navbar-dark bg-dark shadow-sm">
       <div class="container">
         <a href="#" class="navbar-brand d-flex align-items-center">
-          <img src="../../favicon.ico" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24">
+          <img src="https://lipn.univ-paris13.fr/~guerif/images/guerif_small.png" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24">
           <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
           <circle cx="12" cy="13" r="4" /></img>
           <strong>Sauce Site</strong>
@@ -129,28 +129,7 @@ require("config/commandes.php");
         <div class="album py-5 bg-light">
           <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="produitsboite" name="produitsboite">
-              <?php $sauces = afficher(69);
-              foreach ($sauces as $sauce) : ?>
-                <div class="col">
-                  <div class="card shadow-sm">
-                    <title><?= $sauce->nom ?></title>
-                    <img src="<?= $sauce->image ?>" style="max-height: 500px;">
-
-                    <div class="card-body">
-                      <h4 class="card-text" style="text-align:center"><?= substr($sauce->nom, 0, 200); ?></h4>
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-sm btn-outline-secondary">Ajouter au panier</button>
-                          <button type="button" class="btn btn-sm btn-outline-secondary">Acheter</button>
-                        </div>
-                        <small class="text-muted"><?= $sauce->prix ?> €</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              <?php endforeach; ?>
-
-
+              
             </div>
           </div>
         </div>
@@ -170,19 +149,9 @@ require("config/commandes.php");
   </footer>
 
   <script>
-    /*function AffichageParDefaut() {
-      $.ajax({
-        type: "GET",
-        url: 'config/commandes.php?f=afficher',
-        data: {
-          parametre: 69
-        },
-        success: function(obj) {
-          $('#produitsboite').append(obj);
-          alert(obj);
-        }
-      });
-    }*/
+    function AffichageParDefaut() {
+      Affichage(69);
+    }
 
     var unefoissurdeux = true;
     document.getElementById("BoutonCote").onclick = function() {
@@ -197,25 +166,52 @@ require("config/commandes.php");
 
     var unefoissurdeuxAlph = true;
     document.getElementById("alphabet").onclick = function() {
-      if (unefoissurdeux) {
+      if (unefoissurdeux)
+      {
+        Affichage(2);
         document.getElementById("A-Z").innerHTML = "Z-A"
         unefoissurdeux = false;
-      } else {
+      }
+      else
+      {
+        Affichage(3);
         document.getElementById("A-Z").innerHTML = "A-Z"
         unefoissurdeux = true;
       }
     };
 
     var unefoissurdeuxPrix = false;
-    document.getElementById("prix").onclick = function() {
-      if (unefoissurdeux) {
+    document.getElementById("prix").onclick = function()
+    {
+      if (unefoissurdeux)
+      {
+        Affichage(0);
         document.getElementById("stonks").style = "transform: rotate(90deg);"
         unefoissurdeux = false;
-      } else {
+      }
+      else
+      {
+        Affichage(1);
         document.getElementById("stonks").style = "transform: rotate(0deg);"
         unefoissurdeux = true;
       }
     };
+
+    function Affichage(typetri)
+    {
+      $.ajax({
+        type: "GET",
+        url: 'config/affichage.php',
+        dataType: 'json',
+        data: {
+          tri: typetri
+        },
+        success: function(obj)
+        {
+          document.getElementById("produitsboite").innerHTML = obj.result;
+        },        
+      });
+    }
   </script>
 </body>
 
