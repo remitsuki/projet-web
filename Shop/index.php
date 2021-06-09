@@ -154,7 +154,7 @@ $nombredepages = 1;
             </div>
           </div>
           <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center" id = "pagination">
+            <ul class="pagination justify-content-center" id="pagination">
 
             </ul>
           </nav>
@@ -179,9 +179,19 @@ $nombredepages = 1;
     var page = 1;
     var tri = 69;
 
+    <?php $sauces = RecuperationTable();
+    foreach ($sauces as $sauce) : ?>
+      PrechargementImages("<?= $sauce->image ?>");
+    <?php endforeach; ?>
 
     function AffichageParDefaut() {
       Affichage();
+    }
+
+    function PrechargementImages(url)
+    {
+      var img = new Image();
+      img.src = url;
     }
 
     var unefoissurdeux = true;

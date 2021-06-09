@@ -3,21 +3,21 @@
 require 'accesbase.php';
 switch ($_GET['tri']) {
 
-    case 0:
-        $tri = "SELECT * FROM sauce WHERE quantite > 0  ORDER BY prix DESC";
-        break;
-    case 1:
-        $tri = "SELECT * FROM sauce WHERE quantite > 0 ORDER BY prix ASC";
-        break;
-    case 2:
-        $tri = "SELECT * FROM sauce WHERE quantite > 0 ORDER BY nom DESC";
-        break;
-    case 3:
-        $tri = "SELECT * FROM sauce WHERE quantite > 0 ORDER BY nom ASC";
-        break;
-    default:
-        $tri = "SELECT * FROM sauce WHERE quantite > 0 ORDER BY id DESC";
-        break;
+  case 0:
+    $tri = "SELECT * FROM sauce WHERE quantite > 0  ORDER BY prix DESC";
+    break;
+  case 1:
+    $tri = "SELECT * FROM sauce WHERE quantite > 0 ORDER BY prix ASC";
+    break;
+  case 2:
+    $tri = "SELECT * FROM sauce WHERE quantite > 0 ORDER BY nom DESC";
+    break;
+  case 3:
+    $tri = "SELECT * FROM sauce WHERE quantite > 0 ORDER BY nom ASC";
+    break;
+  default:
+    $tri = "SELECT * FROM sauce WHERE quantite > 0 ORDER BY id DESC";
+    break;
 }
 
 $req = $access->prepare($tri);
@@ -27,21 +27,19 @@ $req->execute();
 $data = $req->fetchAll(PDO::FETCH_OBJ);
 
 $obj['result'] = "";
-
-if(($req->rowCount() + 9)/9 < $_GET['page'] || $_GET['page'] < 1)
-{
-  $_GET['page'] = 1;
+$page = $_GET['page'];
+if (($req->rowCount() + 9) / 9 < $page || $page < 1) {
+  $page = 1;
 }
 
 $nbproduits = 0;
 foreach ($data as $sauce) {
-  if(strlen($sauce->image) < 4)
-  {
+  if (strlen($sauce->image) < 4) {
     $sauce->image = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/No_image_available_450_x_600.svg/450px-No_image_available_450_x_600.svg.png";
   }
-    if ($nbproduits < $_GET['page'] * 9 and $nbproduits >= $_GET['page'] * 9 - 9) {
-        $obj['result'] = $obj['result'] .
-            '<div class="col">
+  if ($nbproduits < $page * 9 and $nbproduits >= $page * 9 - 9) {
+    $obj['result'] = $obj['result'] .
+      '<div class="col">
         <div class="card shadow-sm">
           <title> ' . $sauce->nom . ' </title>
           <img src=" ' . $sauce->image . ' " style="max-height: 500px;">
@@ -57,19 +55,27 @@ foreach ($data as $sauce) {
           </div>
         </div>
       </div>';
-    }
-    $nbproduits++;
+  }
+  $nbproduits++;
 }
 $nombredepages = ($nbproduits + 8) / 9;
-$obj['pagination'] = '';
+$page = $page - 1;
+$obj['pagination'] = '<li class="page-item">
+  <button class="page-link" type="button" onclick="AllerALaPage(' . $page . ')">
+  <span aria-hidden="true">&laquo;</span>
+</li>';
 for ($numeropage = 1; $numeropage <= $nombredepages; $numeropage++) {
-    $obj['pagination'] = $obj['pagination'] .
-        '<li class="page-item">
+  $obj['pagination'] = $obj['pagination'] .
+    '<li class="page-item">
       <button class="page-link" type="button" onclick="AllerALaPage(' . $numeropage . ')">'
-        . $numeropage .
-        '</li>';
+    . $numeropage .
+    '</li>';
 }
-
+$page = $page + 2;
+$obj['pagination'] = $obj['pagination'] . '<li class="page-item">
+  <button class="page-link" type="button" onclick="AllerALaPage(' . $page . ')">
+  <span aria-hidden="true">&raquo;</span>
+</li>';
 echo json_encode($obj);
 
 $req->closeCursor();

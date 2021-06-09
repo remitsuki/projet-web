@@ -12,28 +12,12 @@
    }
 }
 
-function afficher($parametre)
+function RecuperationTable()
 {
 	if(require("accesbase.php"))
 	{
-        switch($parametre)
-        {
-            default:
-                $req=$access->prepare("SELECT * FROM sauce ORDER BY id DESC");
-                break;
-            case 0:
-                $req=$access->prepare("SELECT * FROM sauce ORDER BY prix DESC");
-                break;
-            case 1:
-                $req=$access->prepare("SELECT * FROM sauce ORDER BY prix ASC");
-                break;
-            case 2:
-                $req=$access->prepare("SELECT * FROM sauce ORDER BY nom DESC");
-                break;
-            case 3:
-                $req=$access->prepare("SELECT * FROM sauce ORDER BY nom ASC");
-                break;
-        }
+        
+        $req=$access->prepare("SELECT * FROM sauce");
 
         $req->execute();
 
