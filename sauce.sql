@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mar 08 Juin 2021 à 22:04
+-- Généré le :  Mer 09 Juin 2021 à 21:33
 -- Version du serveur :  5.7.11
 -- Version de PHP :  7.0.3
 
@@ -61,7 +61,8 @@ INSERT INTO `sauce` (`id`, `image`, `nom`, `prix`, `quantite`, `description`, `c
 (17, 'https://d167y3o4ydtmfg.cloudfront.net/krafts/444/1578645482441_540x540.png', 'Ketchup', 3.64, 0, 'La recette du Tomato ketchup Heinz, créée il y a plus d\'un siècle et gardée secrète depuis, est empreinte de son fameux goût de tomates et d\'épices. Légumes, viandes ou poissons, le ketchup Heinz agrémente tous vos plats à merveille.Chez Heinz nous développons nos propres graines, sans OGM. Cultivées en plein air et nos tomates sont alors cueillies à maturité en été, puis transformées en Tomato Ketchup selon notre fameuse recette ... sans conservateur ni épaississant ajouté ! Adepte du style rétro? Optez pour le Tomato Ketchup Heinz dans sa mythique bouteille en verre !', 31, 'Heinz'),
 (18, 'https://d36rz30b5p7lsd.cloudfront.net/kraftbrands/france/product/images/Packshots/HZ-THREE-PEPPER-SAUCE-220ML-HD.png', 'Sauce aux poivres', 8.99, 12, 'Un subtil mariage de poivres.Heinz vous invite à voyager avec cette sauce 3 Poivres dont les poivres proviennent d\'Inde et d\'Indonésie. Ces ingrédients prestigieux, revus à la sauce Heinz, donnent un résultat subtilement caramélisé, intense et exotique. Parfait pour vos grillades ou en dipping pour accompagner vos apéritifs épicés.', 203, 'Heinz'),
 (19, 'https://cdn1.charal.fr/wp-content/uploads/2015/10/Sauce-Roquefort-1.png', 'Sauce roquefort', 115, 9, 'L\'exigence et la qualité Charal sont réunies dans cette sauce au roquefort crémeuse pour un résultat « fait maison ». Elle rehausse parfaitement la saveur d’une entrecôte, de préférence bleue ou saignante.\r\nElle se prépare en un clin d\'œil grâce à son sachet micro-ondable.', 52, 'Charal'),
-(20, 'https://cdn1.charal.fr/wp-content/uploads/2015/10/Sauce-Figue-Sauterne.png', 'Sauce foie gras', 645, 2, 'Innovez lors des repas de fêtes avec cette sauce au bloc de foie gras de canard au goût subtil et léger. Dégustez-la avec un tournedos de bœuf bien tendre, de préférence bleu ou saignant.\r\nElle se prépare en un clin d\'œil grâce à son sachet micro-ondable.', 52, 'Charal');
+(20, 'https://cdn1.charal.fr/wp-content/uploads/2015/10/Sauce-Figue-Sauterne.png', 'Sauce foie gras', 645, 2, 'Innovez lors des repas de fêtes avec cette sauce au bloc de foie gras de canard au goût subtil et léger. Dégustez-la avec un tournedos de bœuf bien tendre, de préférence bleu ou saignant.\r\nElle se prépare en un clin d\'œil grâce à son sachet micro-ondable.', 52, 'Charal'),
+(22, '', 'Moutarde extra forte', 14, 967, 'La moutarde Hot Dijon est le résultat d\'une sélection attentive de matières premières de qualité et le mélange parfait de moutarde et de poivre noir pour renforcer le piquant et donner un goût aromatique. Le piquant est la condition pour avoir un goût ou une odeur acerbés et renforcés. ', 289, 'Maille');
 
 --
 -- Index pour les tables exportées
@@ -81,7 +82,7 @@ ALTER TABLE `sauce`
 -- AUTO_INCREMENT pour la table `sauce`
 --
 ALTER TABLE `sauce`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
