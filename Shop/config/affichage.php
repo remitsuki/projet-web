@@ -60,22 +60,49 @@ foreach ($data as $sauce) {
 }
 $nombredepages = ($nbproduits + 8) / 9;
 $page = $page - 1;
-$obj['pagination'] = '<li class="page-item">
-  <button class="page-link" type="button" onclick="AllerALaPage(' . $page . ')">
-  <span aria-hidden="true">&laquo;</span>
-</li>';
-for ($numeropage = 1; $numeropage <= $nombredepages; $numeropage++) {
-  $obj['pagination'] = $obj['pagination'] .
-    '<li class="page-item">
-      <button class="page-link" type="button" onclick="AllerALaPage(' . $numeropage . ')">'
-    . $numeropage .
-    '</li>';
+if ($page == 0) {
+  $obj['pagination'] = '<li class="page-item disabled">
+    <button class="page-link" type="button" disabled">
+    <span aria-hidden="true">&laquo;</span>
+  </li>';
+} else {
+  $obj['pagination'] = '<li class="page-item">
+    <button class="page-link" type="button" onclick="AllerALaPage(' . $page . ')">
+    <span aria-hidden="true">&laquo;</span>
+  </li>';
 }
-$page = $page + 2;
-$obj['pagination'] = $obj['pagination'] . '<li class="page-item">
-  <button class="page-link" type="button" onclick="AllerALaPage(' . $page . ')">
-  <span aria-hidden="true">&raquo;</span>
-</li>';
+$page = $page + 1;
+for ($numeropage = 1; $numeropage <= $nombredepages; $numeropage++)
+{
+  if($numeropage == $page)
+  {
+    $obj['pagination'] = $obj['pagination'] .
+      '<li class="page-item active">
+        <button class="page-link" type="button" onclick="AllerALaPage(' . $numeropage . ')">'
+      . $numeropage .
+      '</li>';
+  }
+  else
+  {
+    $obj['pagination'] = $obj['pagination'] .
+      '<li class="page-item">
+        <button class="page-link" type="button" onclick="AllerALaPage(' . $numeropage . ')">'
+      . $numeropage .
+      '</li>';
+  }
+}
+$page = $page + 1;
+if ($page > $nombredepages) {
+  $obj['pagination'] = $obj['pagination'] . '<li class="page-item disabled">
+    <button class="page-link" type="button" disabled">
+    <span aria-hidden="true">&raquo;</span>
+  </li>';
+} else {
+  $obj['pagination'] = $obj['pagination'] . '<li class="page-item">
+    <button class="page-link" type="button" onclick="AllerALaPage(' . $page . ')">
+    <span aria-hidden="true">&raquo;</span>
+  </li>';
+}
 echo json_encode($obj);
 
 $req->closeCursor();

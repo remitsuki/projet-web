@@ -181,7 +181,7 @@ $nombredepages = 1;
 
     <?php $sauces = RecuperationTable();
     foreach ($sauces as $sauce) : ?>
-      PrechargementImages("<?= $sauce->image ?>");
+      //PrechargementImages("<?= $sauce->image ?>");
     <?php endforeach; ?>
 
     function AffichageParDefaut() {
@@ -236,8 +236,15 @@ $nombredepages = 1;
     };
 
     function AllerALaPage(numeropage) {
-      page = numeropage;
-      Affichage();
+      if(page == numeropage)
+      {
+        window.location.href = "#";
+      }
+      else
+      {
+        page = numeropage;
+        Affichage();
+      }
     }
 
     function Affichage() {
