@@ -27,8 +27,18 @@ $req->execute();
 $data = $req->fetchAll(PDO::FETCH_OBJ);
 
 $obj['result'] = "";
+
+if(($req->rowCount() + 9)/9 < $_GET['page'] || $_GET['page'] < 1)
+{
+  $_GET['page'] = 1;
+}
+
 $nbproduits = 0;
 foreach ($data as $sauce) {
+  if(strlen($sauce->image) < 4)
+  {
+    $sauce->image = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/No_image_available_450_x_600.svg/450px-No_image_available_450_x_600.svg.png";
+  }
     if ($nbproduits < $_GET['page'] * 9 and $nbproduits >= $_GET['page'] * 9 - 9) {
         $obj['result'] = $obj['result'] .
             '<div class="col">
@@ -51,7 +61,7 @@ foreach ($data as $sauce) {
     $nbproduits++;
 }
 $nombredepages = ($nbproduits + 8) / 9;
-$obj['pagination'] = "";
+$obj['pagination'] = '';
 for ($numeropage = 1; $numeropage <= $nombredepages; $numeropage++) {
     $obj['pagination'] = $obj['pagination'] .
         '<li class="page-item">
