@@ -130,7 +130,7 @@ $nombredepages = 1;
             </h6>
             <li class="nav-item">
               <form class="needs-validation">
-                <div class="form-group form-check">
+                <div class="ps-3 form-group form-check">
                   <label for="selection_pays" class="form-label">Choisir une ou plusieurs marques :</label>
                   <select id="selection_pays" multiple class="form-select" required>
                     <option selected>Toutes</option>
@@ -141,6 +141,24 @@ $nombredepages = 1;
                   </select>
                 </div>
               </form>
+            </li>
+            <li class="nav-item mt-3 ps-3">
+              <div class="input-group">
+                <label for="PrixMin" class="form-label me-1 mt-auto mb-auto">Min : </label>
+                <input type="number" class="form-control" aria-label="Prix minimum" min="0" id="PrixMin">
+                <div class="input-group-append">
+                  <span class="input-group-text">€</span>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item mt-2 ps-3">
+              <div class="input-group">
+                <label for="PrixMax" class="form-label me-1 mt-auto mb-auto">Max : </label>
+                <input type="number" class="form-control" aria-label="Prix maximum" min="0" id="PrixMax">
+                <div class="input-group-append">
+                  <span class="input-group-text">€</span>
+                </div>
+              </div>
             </li>
           </ul>
 
@@ -188,8 +206,7 @@ $nombredepages = 1;
       Affichage();
     }
 
-    function PrechargementImages(url)
-    {
+    function PrechargementImages(url) {
       var img = new Image();
       img.src = url;
     }
@@ -236,12 +253,9 @@ $nombredepages = 1;
     };
 
     function AllerALaPage(numeropage) {
-      if(page == numeropage)
-      {
+      if (page == numeropage) {
         window.location.href = "#";
-      }
-      else
-      {
+      } else {
         page = numeropage;
         Affichage();
       }
