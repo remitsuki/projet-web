@@ -16,7 +16,11 @@
 		$_SESSION['lastname'] = $lastname;
 		$_SESSION['email'] = $email;
 
-
+		if(!(filter_var($email, FILTER_VALIDATE_EMAIL))){
+   		   $_SESSION['error'] = 'Enter a valid email';
+	           header('location: Inscription.php');
+	           exit();
+                 }
 		if($password != $repassword){
 			$_SESSION['error'] = 'Passwords did not match';
 			header('location: Inscription.php');
