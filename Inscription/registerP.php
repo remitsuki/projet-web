@@ -10,7 +10,7 @@
 		$password = $_POST['password'];
 		$repassword = $_POST['repassword'];
 		$address=$_POST['address'];
-		//$phone=$_POST['phone'];
+		
 
 		$_SESSION['firstname'] = $firstname;
 		$_SESSION['lastname'] = $lastname;
@@ -37,7 +37,7 @@
 					$stmt->execute(['email'=>$email, 'password'=>$password, 'firstname'=>$firstname, 'lastname'=>$lastname,'address'=>$address]);
 					$userid = $access->lastInsertId();
 				$stmt->closeCursor();
-				header('Location:config/deconnexion.php');
+				header('Location:../config/deconnexion.php');
 
 			}
 
