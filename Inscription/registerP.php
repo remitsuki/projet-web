@@ -33,7 +33,7 @@
 			else{
 				$password = password_hash($password, PASSWORD_DEFAULT);
 
-					$stmt = $access->prepare("INSERT INTO users ( email, password, type, firstname, lastname, address ,contact_info ,photo) VALUES (:email, :password,0 , :firstname, :lastname,:address,'','')");
+					$stmt = $access->prepare("INSERT INTO users ( email, password, type, firstname, lastname, address) VALUES (:email, :password,0 , :firstname, :lastname,:address)");
 					$stmt->execute(['email'=>$email, 'password'=>$password, 'firstname'=>$firstname, 'lastname'=>$lastname,'address'=>$address]);
 					$userid = $access->lastInsertId();
 				$stmt->closeCursor();
