@@ -1,9 +1,9 @@
 <?php
-require("config/commandes.php");
+require("../config/commandes.php");
 $nombredepages = 1;
 
 ?>
-<?php include 'config/sessionN.php'; ?>
+<?php include '../config/sessionN.php'; ?>
 <?php
   if(isset($_SESSION['user'])){
     header('location: indexConnecté.php');
