@@ -1,5 +1,5 @@
 <?php
-	include 'config/sessionN.php';
+	include '../config/sessionN.php';
 	
 	
 
@@ -43,6 +43,6 @@
 
 	$stmt->closeCursor();
 
-	header('location: index.php');
+	header('location: ../index.php');
 
 ?>
