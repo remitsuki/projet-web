@@ -18,12 +18,12 @@
 
 		if(!(filter_var($email, FILTER_VALIDATE_EMAIL))){
    		   $_SESSION['error'] = 'Enter a valid email';
-	           header('location: Inscription.php');
+	           header('location: index.php');
 	           exit();
                  }
 		if($password != $repassword){
 			$_SESSION['error'] = 'Passwords did not match';
-			header('location: Inscription.php');
+			header('location: index.php');
 		}
 		else{
 			
@@ -32,7 +32,7 @@
 			$row = $stmt->fetch();
 			if($row['numrows'] > 0){
 				$_SESSION['error'] = 'Email already taken';
-				header('location: index.php');
+				header('location: ../Shop/index.php');
 			}
 			else{
 				$password = password_hash($password, PASSWORD_DEFAULT);
