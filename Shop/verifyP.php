@@ -1,5 +1,5 @@
 <?php
-	include 'config/sessionN.php';
+	include '../config/sessionN.php';
 	
 	
 
