@@ -1,6 +1,6 @@
 <?php
 	
-	include 'config/sessionN.php';
+	include '../config/sessionN.php';
 
     
 	if(isset($_POST['signup'])){
