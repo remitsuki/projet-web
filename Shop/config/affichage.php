@@ -1,6 +1,6 @@
 <?php
 
-require '../config/accesbdd.php';
+require '../../config/accesbdd.php';
 switch ($_GET['tri']) {
 
   case 0:
