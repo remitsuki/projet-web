@@ -88,7 +88,7 @@ $nombredepages = 1;
               <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
               <div class="form-floating text-white">
                 <h6>
-                  Pas encore <a href="../Inscription/Inscription.php">inscrit</a> ?
+                  Pas encore <a href="../Inscription/index.php">inscrit</a> ?
                 </h6>
               </div>
             </form>
