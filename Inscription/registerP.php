@@ -28,7 +28,7 @@
 			$row = $stmt->fetch();
 			if($row['numrows'] > 0){
 				$_SESSION['error'] = 'Email already taken';
-				header('location: Inscription.php');
+				header('location: index.php');
 			}
 			else{
 				$password = password_hash($password, PASSWORD_DEFAULT);
