@@ -7,10 +7,10 @@ if (isset($_GET['force']) && $_GET['force'] > 0 && $_GET['force'] < 10)
 else
   $force = "";
 
-if (isset($_GET['prixmin']) && isset($_GET['prixmax']) && ($_GET['prixmin'] < $_GET['prixmax']) && ($_GET['prixmax'] > 0))
+if (isset($_GET['prixmin']) && isset($_GET['prixmax']) && ($_GET['prixmin'] <= $_GET['prixmax']) && ($_GET['prixmax'] > 0))
 {
-  $prixmin = " AND prix > " . $_GET['prixmin'];
-  $prixmax = " AND prix < " . $_GET['prixmax'];
+  $prixmin = " AND prix >= " . $_GET['prixmin'];
+  $prixmax = " AND prix <= " . $_GET['prixmax'];
 }
 else
 {
@@ -58,7 +58,7 @@ if (($req->rowCount() + 9) / 9 < $page || $page < 1) {
 
 $nbproduits = 0;
 foreach ($data as $sauce) {
-  if (strlen($sauce->image) < 4) {
+  if (strlen($sauce->image) < 4 ) {
     $sauce->image = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/No_image_available_450_x_600.svg/450px-No_image_available_450_x_600.svg.png";
   }
   if ($nbproduits < $page * 9 and $nbproduits >= $page * 9 - 9) {

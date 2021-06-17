@@ -27,20 +27,6 @@ function RecuperationTable()
   }
 }
 
-function recupermarque()
-{
-  if (require("../config/accesbdd.php")) {
-    $req = $access->prepare("SELECT DISTINCT marque FROM sauce");
-
-    $req->execute();
-
-    $data = $req->fetchAll(PDO::FETCH_OBJ);
-
-    return $data;
-
-    $req->closeCursor();
-  }
-}
 
 function supprimer($id)
 {

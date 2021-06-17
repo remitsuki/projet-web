@@ -156,20 +156,7 @@ if(isset($_SESSION['success'])){
                 <span data-feather="plus-circle"></span>
               </a>
             </h6>
-            <li class="nav-item">
-              <form class="needs-validation">
-                <div class="ps-3 form-group form-check">
-                  <label for="selection_pays" class="form-label">Choisir une ou plusieurs marques :</label>
-                  <select id="selection_pays" multiple class="form-select" required>
-                    <option selected>Toutes</option>
-                    <?php $sauces = recupermarque();
-                    foreach ($sauces as $sauce) : ?>
-                      <option><?= $sauce->marque ?></option>
-                    <?php endforeach; ?>
-                  </select>
-                </div>
-              </form>
-            </li>
+           
             <li class="nav-item mt-3 ps-3">
               <div class="input-group">
                 <label for="PrixMin" class="form-label me-1 mt-auto mb-auto">Min : </label>
@@ -199,6 +186,9 @@ if(isset($_SESSION['success'])){
             </li>
             <li class="nav-item mt-5">
               <button class="w-100 btn btn-lg btn-primary" type="submit" onclick="Affichage()">Valider la selection</button>
+            </li>
+            <li class="nav-item mt-1 ms-auto mx-auto">
+              <a href="#" id="reset">Réinitialiser la selection</a>
             </li>
 
 
@@ -344,9 +334,19 @@ if(isset($_SESSION['success'])){
       if(force > 0)
         document.getElementById("forceaffichee").innerHTML = force;
       else
-        document.getElementById("forceaffichee").innerHTML = "&nbsp;" ;
+        document.getElementById("forceaffichee").innerHTML = "&nbsp;";
 
     }
+
+    document.getElementById("reset").onclick = function() {
+      page = 1;
+      tri = 69;
+      document.getElementById("selecteurforce").value = 0;
+      document.getElementById("PrixMax").value = 0;
+      document.getElementById("PrixMin").value = 0;
+      document.getElementById("forceaffichee").innerHTML = "&nbsp;";
+      Affichage();
+    };
   </script>
 </body>
 
