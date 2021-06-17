@@ -45,7 +45,7 @@
     <div class="container">
         <main>
             <div class="py-5 text-center">
-                <img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+                <img class="d-block mx-auto mb-4" src="https://lipn.univ-paris13.fr/~guerif/images/guerif_small.png" alt="" width="72" height="57">
                 <h2>Checkout form</h2>
                 <p class="lead"> yooooooooooooooooooo</p>
             </div>
@@ -95,7 +95,7 @@
 
                             <div class="col-md-3">
                                 <label for="cc-expiration" class="form-group has-feedback">Expiration</label>
-                                <input type="date" class="form-control" id="cc-expiration" placeholder="" required>
+                                <input type="month" class="form-control" id="cc-expiration" placeholder="" required>
                                 <div class="invalid-feedback">
                                     Expiration date required
                                 </div>
@@ -120,7 +120,7 @@
 
 
         <footer class="my-5 pt-5 text-muted text-center text-small">
-            <p class="mb-1">&copy; 2017–2021 Company Name</p>
+            <p class="mb-1">&copy;2021 Sauce Co</p>
             <ul class="list-inline">
                 <li class="list-inline-item"><a href="index.php">home</a></li>
 
