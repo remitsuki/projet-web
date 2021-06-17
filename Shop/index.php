@@ -70,19 +70,19 @@ if(isset($_SESSION['success'])){
           </div>
           <div class="col-sm-4 offset-md-1 py-4">
             <form action="verifyP.php" method="POST">
-              <h1 class="h3 mb-3 fw-normal text-white">Please sign in</h1>
+              <h1 class="h3 mb-3 fw-normal text-white">Connectez vous !</h1>
 
               <div class="form-floating">
                 <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Email address</label>
+                <label for="floatingInput">Adresse mail</label>
               </div>
               <div class="form-floating">
                 <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                <label for="floatingPassword">Password</label>
+                <label for="floatingPassword">Mot de passe</label>
               </div>
               <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
               <div class="form-floating text-white">
-                <h6>
+                <h6 class = "mx-auto">
                   Pas encore <a href="../Inscription.php">inscrit</a> ?
                 </h6>
               </div>
@@ -175,6 +175,11 @@ if(isset($_SESSION['success'])){
                 </div>
               </div>
             </li>
+            <li class ="d-none" id = "alertprix">
+              <div class="text-danger ps-3">
+                Le minimum ne peut pas être inférieur au maximum.
+              </div>
+            </li>
             <li class="nav-item mt-2">
               <div class="input-group">
                 <label for="selecteurforce" class="form-label ps-3">Force :</label>
@@ -185,9 +190,9 @@ if(isset($_SESSION['success'])){
               </div>
             </li>
             <li class="nav-item mt-5">
-              <button class="w-100 btn btn-lg btn-primary" type="submit" onclick="Affichage()">Valider la selection</button>
+              <button class="w-100 btn btn-lg btn-primary" type="submit" onclick="Filtrer()">Valider la selection</button>
             </li>
-            <li class="nav-item mt-1 ms-auto mx-auto">
+            <li class="nav-item mt-1 mx-auto">
               <a href="#" id="reset">Réinitialiser la selection</a>
             </li>
 
@@ -347,6 +352,21 @@ if(isset($_SESSION['success'])){
       document.getElementById("forceaffichee").innerHTML = "&nbsp;";
       Affichage();
     };
+
+    function Filtrer()
+    {
+      var prixminfiltre = document.getElementById("PrixMin").value;
+      var prixmaxfiltre = document.getElementById("PrixMax").value;
+
+
+      if(prixminfiltre > prixmaxfiltre)
+        document.getElementById("alertprix").className ="d-block";
+      else
+      {
+        document.getElementById("alertprix").className ="d-none";
+        Affichage();
+      }
+    }
   </script>
 </body>
 

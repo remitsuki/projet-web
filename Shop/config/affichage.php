@@ -57,16 +57,14 @@ if (($req->rowCount() + 9) / 9 < $page || $page < 1) {
 }
 
 $nbproduits = 0;
+$imgcasse = "'https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/No_image_available_450_x_600.svg/450px-No_image_available_450_x_600.svg.png'";
 foreach ($data as $sauce) {
-  if (strlen($sauce->image) < 4 ) {
-    $sauce->image = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/No_image_available_450_x_600.svg/450px-No_image_available_450_x_600.svg.png";
-  }
   if ($nbproduits < $page * 9 and $nbproduits >= $page * 9 - 9) {
     $obj['result'] = $obj['result'] .
       '<div class="col">
         <div class="card shadow-sm">
           <title> ' . $sauce->nom . ' </title>
-          <img src=" ' . $sauce->image . ' " style="max-height: 500px;">
+          <img src=" ' . $sauce->image . ' " style="max-height: 500px;" onerror ="this.src = '.$imgcasse .'">
           <div class="card-body">
             <h4 class="card-text" style="text-align:center"> ' . $sauce->nom . ' </h4>
             <div class="d-flex justify-content-between align-items-center">
