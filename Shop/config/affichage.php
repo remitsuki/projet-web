@@ -1,26 +1,50 @@
 <?php
 
 require '../../config/accesbdd.php';
+
+if (isset($_GET['force']) && $_GET['force'] > 0 && $_GET['force'] < 10)
+  $force = " AND niveau = " .  $_GET['force'];
+else
+  $force = "";
+
+if (isset($_GET['prixmin']) && isset($_GET['prixmax']) && ($_GET['prixmin'] < $_GET['prixmax']) && ($_GET['prixmax'] > 0))
+{
+  $prixmin = " AND prix > " . $_GET['prixmin'];
+  $prixmax = " AND prix < " . $_GET['prixmax'];
+}
+else
+{
+  $prixmin = "";
+  $prixmax = "";
+}
+
+
 switch ($_GET['tri']) {
 
   case 0:
-    $tri = "SELECT * FROM sauce WHERE quantite > 0  ORDER BY prix DESC";
+    $tri = " ORDER BY prix DESC";
     break;
   case 1:
-    $tri = "SELECT * FROM sauce WHERE quantite > 0 ORDER BY prix ASC";
+    $tri = " ORDER BY prix ASC";
     break;
   case 2:
-    $tri = "SELECT * FROM sauce WHERE quantite > 0 ORDER BY nom DESC";
+    $tri = " ORDER BY nom DESC";
     break;
   case 3:
-    $tri = "SELECT * FROM sauce WHERE quantite > 0 ORDER BY nom ASC";
+    $tri = " ORDER BY nom ASC";
+    break;
+  case 4:
+    $tri = " ORDER BY niveau DESC";
+    break;
+  case 5:
+    $tri = " ORDER BY niveau ASC";
     break;
   default:
-    $tri = "SELECT * FROM sauce WHERE quantite > 0 ORDER BY id DESC";
+    $tri = " ORDER BY id DESC";
     break;
 }
 
-$req = $access->prepare($tri);
+$req = $access->prepare("SELECT * FROM sauce WHERE quantite > 0" . $force . $prixmin . $prixmax . $tri);
 
 $req->execute();
 
@@ -72,18 +96,14 @@ if ($page == 0) {
   </li>';
 }
 $page = $page + 1;
-for ($numeropage = 1; $numeropage <= $nombredepages; $numeropage++)
-{
-  if($numeropage == $page)
-  {
+for ($numeropage = 1; $numeropage <= $nombredepages; $numeropage++) {
+  if ($numeropage == $page) {
     $obj['pagination'] = $obj['pagination'] .
       '<li class="page-item active">
         <button class="page-link" type="button" onclick="AllerALaPage(' . $numeropage . ')">'
       . $numeropage .
       '</li>';
-  }
-  else
-  {
+  } else {
     $obj['pagination'] = $obj['pagination'] .
       '<li class="page-item">
         <button class="page-link" type="button" onclick="AllerALaPage(' . $numeropage . ')">'
