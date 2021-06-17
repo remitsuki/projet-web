@@ -38,3 +38,9 @@ déclaration d'intention:
 -Saad connexion / inscription
 -Felix fait l'administration du site (insertion de produits dans la base)
 
+Chaque dossier comportera un fichier index.php si besoin est (c'est-à-dire si il y a une interface, pas besoin de le mettre si c'est juste des fonctions comme pour config) et d'autre fichier si besoin. D'ailleurs les fonctions seront dans un dossier config dans le dossier en rapport
+Administration : permet de supprimer, ajouter, modifier des produits et devra avoir un index.php
+Inscription : permet de s'inscrire, contient index.php
+Panier : permet de vérifier son panier et accéder au payement, contient index.php
+Shop : classifie les produits, permet de les ajouter au panier et de se connecter, contient index.php (a part pour les fonctions de connexion ou pour le panier, il n'y a pas besoin d'autre fichier normalement)
+config : ne contient que l'acces à la base de donnée
