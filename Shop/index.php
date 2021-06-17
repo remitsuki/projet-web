@@ -1,41 +1,36 @@
 <?php
-require("../config/commandes.php");
+require("config/commandes.php");
 $nombredepages = 1;
 
+include 'config/sessionN.php';
+if(isset($_SESSION['user'])){
+  header('location: indexConnecté.php');
+}
+if(isset($_SESSION['error'])){
+  echo "
+    <div class='callout callout-danger text-center'>
+      <p>".$_SESSION['error']."</p> 
+    </div>
+  ";
+  unset($_SESSION['error']);
+}
+if(isset($_SESSION['success'])){
+  echo "
+    <div class='callout callout-success text-center'>
+      <p>".$_SESSION['success']."</p> 
+    </div>
+  ";
+  unset($_SESSION['success']);
+}
+
+
 ?>
-<?php include '../config/sessionN.php'; ?>
-<?php
-  if(isset($_SESSION['user'])){
-    header('location: indexConnecté.php');
-  }
-?>
-  	<?php
-      if(isset($_SESSION['error'])){
-        echo "
-          <div class='callout callout-danger text-center'>
-            <p>".$_SESSION['error']."</p> 
-          </div>
-        ";
-        unset($_SESSION['error']);
-      }
-      if(isset($_SESSION['success'])){
-        echo "
-          <div class='callout callout-success text-center'>
-            <p>".$_SESSION['success']."</p> 
-          </div>
-        ";
-        unset($_SESSION['success']);
-      }
-    ?>
+
 <!doctype html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-  <meta name="generator" content="Hugo 0.83.1">
   <title>Shop - Sauce Site</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
@@ -88,7 +83,7 @@ $nombredepages = 1;
               <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
               <div class="form-floating text-white">
                 <h6>
-                  Pas encore <a href="../Inscription/index.php">inscrit</a> ?
+                  Pas encore <a href="../Inscription.php">inscrit</a> ?
                 </h6>
               </div>
             </form>
@@ -145,6 +140,16 @@ $nombredepages = 1;
               </a>
             </li>
 
+            <li class="nav-item">
+              <a id="force" class="nav-link" href="#">
+                <span data-feather="file"></span>
+                Piquant
+                <svg id="piquant" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z" />
+                </svg>
+              </a>
+            </li>
+
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
               <span>Plus de filtres :</span>
               <a class="link-secondary" href="#" aria-label="Add a new report">
@@ -168,7 +173,7 @@ $nombredepages = 1;
             <li class="nav-item mt-3 ps-3">
               <div class="input-group">
                 <label for="PrixMin" class="form-label me-1 mt-auto mb-auto">Min : </label>
-                <input type="number" class="form-control" aria-label="Prix minimum" min="0" id="PrixMin">
+                <input name="prixmin" type="number" class="form-control" aria-label="Prix minimum" min="0" id="PrixMin" value ="0">
                 <div class="input-group-append">
                   <span class="input-group-text">€</span>
                 </div>
@@ -177,12 +182,26 @@ $nombredepages = 1;
             <li class="nav-item mt-2 ps-3">
               <div class="input-group">
                 <label for="PrixMax" class="form-label me-1 mt-auto mb-auto">Max : </label>
-                <input type="number" class="form-control" aria-label="Prix maximum" min="0" id="PrixMax">
+                <input name="prixmax" type="number" class="form-control" aria-label="Prix maximum" min="0" id="PrixMax" value ="0">
                 <div class="input-group-append">
                   <span class="input-group-text">€</span>
                 </div>
               </div>
             </li>
+            <li class="nav-item mt-2">
+              <div class="input-group">
+                <label for="selecteurforce" class="form-label ps-3">Force :</label>
+                <input name="force" type="range" class="form-range mt-2" min="0" max="9" id="selecteurforce" oninput="ChangerValeurForce()" value="0" style="width:80%">
+                <div class="input-group-append ms-2">
+                  <span class="input-group-text" id ="forceaffichee">&nbsp;</span>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item mt-5">
+              <button class="w-100 btn btn-lg btn-primary" type="submit" onclick="Affichage()">Valider la selection</button>
+            </li>
+
+
           </ul>
 
         </div>
@@ -275,6 +294,21 @@ $nombredepages = 1;
       Affichage();
     };
 
+    var unefoissurdeuxPiquant = false;
+    document.getElementById("force").onclick = function() {
+      if (unefoissurdeux) {
+        document.getElementById("piquant").style = "transform: rotate(90deg);"
+        unefoissurdeux = false;
+        tri = 4;
+      } else {
+        document.getElementById("piquant").style = "transform: rotate(0deg);"
+        unefoissurdeux = true;
+        tri = 5;
+      }
+      page = 1;
+      Affichage();
+    };
+
     function AllerALaPage(numeropage) {
       if (page == numeropage) {
         window.location.href = "#";
@@ -292,6 +326,9 @@ $nombredepages = 1;
         data: {
           tri: tri,
           page: page,
+          force: document.getElementById("selecteurforce").value,
+          prixmax: document.getElementById("PrixMax").value,
+          prixmin: document.getElementById("PrixMin").value,
         },
         success: function(obj) {
           document.getElementById("produitsboite").innerHTML = obj.result;
@@ -299,6 +336,16 @@ $nombredepages = 1;
         },
       });
       window.location.href = "#";
+    }
+
+    function ChangerValeurForce() {
+      var force = document.getElementById("selecteurforce").value;
+
+      if(force > 0)
+        document.getElementById("forceaffichee").innerHTML = force;
+      else
+        document.getElementById("forceaffichee").innerHTML = "&nbsp;" ;
+
     }
   </script>
 </body>
