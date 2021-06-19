@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Sam 19 Juin 2021 à 12:00
+-- Généré le :  Sam 19 Juin 2021 à 18:07
 -- Version du serveur :  5.7.11
 -- Version de PHP :  7.0.3
 
@@ -32,7 +32,7 @@ CREATE TABLE `sauce` (
   `nom` varchar(64) NOT NULL,
   `prix` float NOT NULL,
   `quantite` int(16) NOT NULL DEFAULT '0',
-  `description` text NOT NULL,
+  `textedescription` text NOT NULL,
   `niveau` int(1) NOT NULL DEFAULT '1',
   `marque` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -41,7 +41,7 @@ CREATE TABLE `sauce` (
 -- Contenu de la table `sauce`
 --
 
-INSERT INTO `sauce` (`id`, `image`, `nom`, `prix`, `quantite`, `description`, `niveau`, `marque`) VALUES
+INSERT INTO `sauce` (`id`, `image`, `nom`, `prix`, `quantite`, `textedescription`, `niveau`, `marque`) VALUES
 (1, 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.iloveamericanfood.com%2F107976-large_default%2Fragu-pizza-sauce-homemade-style-140-oz.jpg&f=1&nofb=1', 'Ragu pizza', 88, 69, 'Sauce pour pizza Ragu', 3, 'Ragu'),
 (2, 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fpngimg.com%2Fuploads%2Fsauce%2Fsauce_PNG52.png&f=1&nofb=1', 'Sauce piquante biggs', 2, 69, 'Sauce biggs Huston piquant', 9, 'Huston'),
 (3, 'https://boucherie.swisshallal.ch/486-large_default/sauce-biggy-burger.jpg', 'Biggy Burger', 9999, 69, 'Lorem Ipsum', 2, 'Nawhal\'s'),
@@ -63,7 +63,9 @@ INSERT INTO `sauce` (`id`, `image`, `nom`, `prix`, `quantite`, `description`, `n
 (19, 'https://cdn1.charal.fr/wp-content/uploads/2015/10/Sauce-Roquefort-1.png', 'Sauce roquefort', 115, 9, 'L\'exigence et la qualité Charal sont réunies dans cette sauce au roquefort crémeuse pour un résultat « fait maison ». Elle rehausse parfaitement la saveur d’une entrecôte, de préférence bleue ou saignante.\r\nElle se prépare en un clin d\'œil grâce à son sachet micro-ondable.', 6, 'Charal'),
 (20, 'https://cdn1.charal.fr/wp-content/uploads/2015/10/Sauce-Figue-Sauterne.png', 'Sauce foie gras', 645, 2, 'Innovez lors des repas de fêtes avec cette sauce au bloc de foie gras de canard au goût subtil et léger. Dégustez-la avec un tournedos de bœuf bien tendre, de préférence bleu ou saignant.\r\nElle se prépare en un clin d\'œil grâce à son sachet micro-ondable.', 2, 'Charal'),
 (22, '', 'Moutarde extra forte', 14, 967, 'La moutarde Hot Dijon est le résultat d\'une sélection attentive de matières premières de qualité et le mélange parfait de moutarde et de poivre noir pour renforcer le piquant et donner un goût aromatique. Le piquant est la condition pour avoir un goût ou une odeur acerbés et renforcés. ', 9, 'Maille'),
-(23, 'https://ws.mcdonalds.fr/media/9a/e5/da/9ae5dae621380c6ce286241905f5bfb126d9303b', 'Sauce Classic Moutarde', 65.02, 125000, ' Ingrédients : eau, sucre, vinaigre d\'alcool, huile de colza, sirop de glucose-fructose, graines de moutarde (6,0%), sel, amidon modifié de maïs, jaune d\'œuf, arôme, épices, sirop de sucre caramélisé, épaississant (E 415).\r\n\r\nA conserver à température ambiante', 8, 'McDonald');
+(23, 'https://ws.mcdonalds.fr/media/9a/e5/da/9ae5dae621380c6ce286241905f5bfb126d9303b', 'Sauce Classic Moutarde', 65.02, 125000, ' Ingrédients : eau, sucre, vinaigre d\'alcool, huile de colza, sirop de glucose-fructose, graines de moutarde (6,0%), sel, amidon modifié de maïs, jaune d\'œuf, arôme, épices, sirop de sucre caramélisé, épaississant (E 415).\r\n\r\nA conserver à température ambiante', 8, 'McDonald'),
+(24, 'https://www.mavieencouleurs.fr/sites/default/files/styles/diapo_box/public/2019-04/8712566361601%20Amora%20Sauce%20Samourai%20225g.png?itok=4WDnNDCH', 'Samourai', 24.02, 2, 'Cette sauce savoureuse et relevée ira à ravir avec vos sandwichs, vos kebabs, vos viandes et vos frites. Elle se dégustera aussi en apéritif avec des chips. Son bouchon, conçu pour rester toujours propre, en préservera toute la saveur. Existe en format 255g.', 7, 'Amora'),
+(25, 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fboutique.vinaigre-tetenoire.fr%2F306-thickbox_default%2Fsauce-vinaigrette-au-vinaigre-de-cidre-et-au-miel-55cl.jpg&f=1&nofb=1', 'Vinaigrette moutarde miel', 24, 149000, 'Vinaigrette légère au vinaigre de cidre relevé par de la moutarde bonifié par du miel.', 7, 'Tête Noire');
 
 --
 -- Index pour les tables exportées
@@ -83,7 +85,7 @@ ALTER TABLE `sauce`
 -- AUTO_INCREMENT pour la table `sauce`
 --
 ALTER TABLE `sauce`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
