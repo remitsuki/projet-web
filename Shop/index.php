@@ -3,9 +3,7 @@ require("config/commandes.php");
 $nombredepages = 1;
 
 include 'config/sessionN.php';
-if (isset($_SESSION['user'])) {
-  header('location: index.php');
-}
+
 if (isset($_SESSION['error'])) {
   echo "
       <p>" . $_SESSION['error'] . "</p> 
@@ -65,7 +63,7 @@ if (isset($_SESSION['success'])) {
             <p class="text-muted">Une sauce est une préparation culinaire, froide, tiède ou chaude, destinée à être servie avec un mets salé ou sucré. Composée d'un simple jus ou d'un apprêt très élaboré, la sauce peut servir d'accompagnement, comme la mayonnaise, la béarnaise ou le coulis de fruits, mais aussi d'élément de cuisson, comme pour une daube ou un ragoût. D'une grande diversité, les sauces sont d'une consistance plus ou moins liquide que l'on peut détendre ou épaissir ; elles sont faites à partir de mélange à froid comme la vinaigrette, tiède comme l'émulsion au beurre d'une béarnaise, ou à chaud comme les déglaçages au vin, ou toutes sortes de fonds. Chacune d'elles peut être déclinée et agrémentée d'herbes, aromates, épices, colorants, alcools, mais aussi tomates, jus de fruits, de fromage ou autre foie gras.</p>
           </div>
           <div class="col-sm-4 offset-md-1 py-4">
- <?php if(empty($_POST)) :?> 
+ <?php  if(empty($_SESSION['user'])): ?> 
          <form action='verifyP.php' method='POST'>
           <h1 class='h3 mb-3 fw-normal text-white'>Connectez vous !</h1>
 
@@ -115,7 +113,7 @@ if (isset($_SESSION['success'])) {
     <circle cx='12' cy='13' r='4' /></img>
     <strong>Sauce Site</strong>
   </a>
-  <a href='../config/deconnexion.php'>déconnection</a>
+  <a href='config/deconnexion.php'>déconnection</a>
   </div>
   </div>
 </header>
