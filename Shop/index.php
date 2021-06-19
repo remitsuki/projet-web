@@ -119,10 +119,9 @@ if (isset($_SESSION['success'])) {
           <ul class="nav flex-column">
 
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-              <span>Trié par :</span>
-              <a class="link-secondary" href="#" aria-label="Add a new report">
-                <span data-feather="plus-circle"></span>
-              </a>
+              <span>
+                Trié par :
+              </span>
             </h6>
             <li class="nav-item">
               <a id="alphabet" class="nav-link" href="#">
@@ -151,47 +150,48 @@ if (isset($_SESSION['success'])) {
             </li>
 
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-              <span>Plus de filtres :</span>
+                <span type="button" data-bs-toggle="collapse" data-bs-target="#PlusDeFiltres" aria-controls="PlusDeFiltres" aria-expanded="false" aria-label="Toggle navigation">Plus de filtres :</span>
               <a class="link-secondary" href="#" aria-label="Add a new report">
                 <span data-feather="plus-circle"></span>
               </a>
             </h6>
-
-            <li class="nav-item mt-3 ps-3">
-              <div class="input-group">
-                <label for="PrixMin" class="form-label me-1 mt-auto mb-auto">Min : </label>
-                <input name="prixmin" type="number" class="form-control" aria-label="Prix minimum" min="0" id="PrixMin" value="0" oninput="ChangerMin()">
-                <div class="input-group-append">
-                  <span class="input-group-text">€</span>
+            <div id="PlusDeFiltres" class ="collapse">
+              <li class="nav-item mt-3 ps-3">
+                <div class="input-group">
+                  <label for="PrixMin" class="form-label me-1 mt-auto mb-auto">Min : </label>
+                  <input name="prixmin" type="number" class="form-control" aria-label="Prix minimum" min="0" id="PrixMin" value="0" oninput="ChangerMin()">
+                  <div class="input-group-append">
+                    <span class="input-group-text">€</span>
+                  </div>
                 </div>
-              </div>
-            </li>
-            <li class="nav-item mt-2 ps-3">
-              <div class="input-group">
-                <label for="PrixMax" class="form-label me-1 mt-auto mb-auto">Max : </label>
-                <input name="prixmax" type="number" class="form-control" aria-label="Prix maximum" min="0" id="PrixMax" value="0">
-                <div class="input-group-append">
-                  <span class="input-group-text">€</span>
+              </li>
+              <li class="nav-item mt-2 ps-3">
+                <div class="input-group">
+                  <label for="PrixMax" class="form-label me-1 mt-auto mb-auto">Max : </label>
+                  <input name="prixmax" type="number" class="form-control" aria-label="Prix maximum" min="0" id="PrixMax" value="0">
+                  <div class="input-group-append">
+                    <span class="input-group-text">€</span>
+                  </div>
                 </div>
-              </div>
-            </li>
-            <li class="d-none" id="alertprix">
-              <div class="text-danger ps-3">
-                Le minimum ne peut pas être inférieur au maximum.
-              </div>
-            </li>
-            <li class="nav-item mt-2">
-              <div class="input-group">
-                <label for="selecteurforce" class="form-label ps-3">Force :</label>
-                <input name="force" type="range" class="form-range mt-2" min="0" max="9" id="selecteurforce" oninput="ChangerValeurForce()" value="0" style="width:80%">
-                <div class="input-group-append ms-2">
-                  <span class="input-group-text" id="forceaffichee">&nbsp;</span>
+              </li>
+              <li class="d-none" id="alertprix">
+                <div class="text-danger ps-3">
+                  Le minimum ne peut pas être inférieur au maximum.
                 </div>
-              </div>
-            </li>
-            <li class="nav-item mt-5">
-              <button class="w-100 btn btn-lg btn-primary" type="submit" onclick="Filtrer()">Valider la selection</button>
-            </li>
+              </li>
+              <li class="nav-item mt-2">
+                <div class="input-group">
+                  <label for="selecteurforce" class="form-label ps-3">Force :</label>
+                  <input name="force" type="range" class="form-range mt-2" min="0" max="9" id="selecteurforce" oninput="ChangerValeurForce()" value="0" style="width:80%">
+                  <div class="input-group-append ms-2">
+                    <span class="input-group-text" id="forceaffichee">&nbsp;</span>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item mt-5">
+                <button class="w-100 btn btn-lg btn-primary" type="submit" onclick="Filtrer()">Valider la selection</button>
+              </li>
+            </div>
             <li class="nav-item mt-1 mx-auto">
               <a href="#" id="reset">Réinitialiser la selection</a>
             </li>
@@ -208,7 +208,7 @@ if (isset($_SESSION['success'])) {
 
             </div>
           </div>
-          <nav aria-label="Page navigation example" class = "mt-3">
+          <nav aria-label="Page navigation example" class="mt-3">
             <ul class="pagination justify-content-center" id="pagination">
 
             </ul>
