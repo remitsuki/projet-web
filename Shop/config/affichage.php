@@ -7,13 +7,10 @@ if (isset($_GET['force']) && $_GET['force'] > 0 && $_GET['force'] < 10)
 else
   $force = "";
 
-if (isset($_GET['prixmin']) && isset($_GET['prixmax']) && ($_GET['prixmin'] <= $_GET['prixmax']) && ($_GET['prixmax'] > 0))
-{
+if (isset($_GET['prixmin']) && isset($_GET['prixmax']) && ($_GET['prixmin'] <= $_GET['prixmax']) && ($_GET['prixmax'] > 0)) {
   $prixmin = " AND prix >= " . $_GET['prixmin'];
   $prixmax = " AND prix <= " . $_GET['prixmax'];
-}
-else
-{
+} else {
   $prixmin = "";
   $prixmax = "";
 }
@@ -64,7 +61,7 @@ foreach ($data as $sauce) {
       '<div class="col">
         <div class="card shadow-sm">
           <title> ' . $sauce->nom . ' </title>
-          <img src=" ' . $sauce->image . ' " style="max-height: 500px;" onerror ="this.src = '.$imgcasse .'">
+          <img src=" ' . $sauce->image . ' " style="max-height: 500px;" onerror ="this.src = ' . $imgcasse . '">
           <div class="card-body">
             <h4 class="card-text" style="text-align:center"> ' . $sauce->nom . ' </h4>
             <div class="d-flex justify-content-between align-items-center">
@@ -80,6 +77,14 @@ foreach ($data as $sauce) {
   }
   $nbproduits++;
 }
+
+if ($nbproduits == 0)
+  $obj['result'] =
+    '<div class="alert alert-warning mx-auto" role="alert">
+    Aucun produit ne correspond à vos filtres.
+  </div>';
+
+
 $nombredepages = ($nbproduits + 8) / 9;
 $page = $page - 1;
 if ($page == 0) {

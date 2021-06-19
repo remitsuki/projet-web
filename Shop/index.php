@@ -8,13 +8,17 @@ if(isset($_SESSION['user'])){
 }
 if(isset($_SESSION['error'])){
   echo "
+    <div class='callout callout-danger text-center'>
       <p>".$_SESSION['error']."</p> 
+    </div>
   ";
   unset($_SESSION['error']);
 }
 if(isset($_SESSION['success'])){
   echo "
+    <div class='callout callout-success text-center'>
       <p>".$_SESSION['success']."</p> 
+    </div>
   ";
   unset($_SESSION['success']);
 }
@@ -69,17 +73,17 @@ if(isset($_SESSION['success'])){
               <h1 class="h3 mb-3 fw-normal text-white">Connectez vous !</h1>
 
               <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInput" name="email"  placeholder="name@example.com">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
                 <label for="floatingInput">Adresse mail</label>
               </div>
               <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" name="password"  placeholder="Password">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
                 <label for="floatingPassword">Mot de passe</label>
               </div>
-              <button class="w-100 btn btn-lg btn-primary" name="login" type="submit">Sign in</button>
+              <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
               <div class="form-floating text-white">
                 <h6 class = "mx-auto">
-                  Pas encore <a href="../Inscription/index.php">inscrit</a> ?
+                  Pas encore <a href="../Inscription.php">inscrit</a> ?
                 </h6>
               </div>
             </form>
@@ -156,7 +160,7 @@ if(isset($_SESSION['success'])){
             <li class="nav-item mt-3 ps-3">
               <div class="input-group">
                 <label for="PrixMin" class="form-label me-1 mt-auto mb-auto">Min : </label>
-                <input name="prixmin" type="number" class="form-control" aria-label="Prix minimum" min="0" id="PrixMin" value ="0">
+                <input name="prixmin" type="number" class="form-control" aria-label="Prix minimum" min="0" id="PrixMin" value ="0" oninput = "ChangerMin()">
                 <div class="input-group-append">
                   <span class="input-group-text">€</span>
                 </div>
@@ -362,6 +366,15 @@ if(isset($_SESSION['success'])){
         document.getElementById("alertprix").className ="d-none";
         Affichage();
       }
+    }
+    
+    function ChangerMin()
+    {
+      
+      var min = document.getElementById("PrixMin").value;
+      document.getElementById("PrixMax").min = min;
+      if(parseInt(document.getElementById("PrixMax").value) < parseInt(min))
+        document.getElementById("PrixMax").value = min;
     }
   </script>
 </body>
