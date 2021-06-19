@@ -4,7 +4,7 @@ $nombredepages = 1;
 
 include 'config/sessionN.php';
 if (isset($_SESSION['user'])) {
-  header('location: indexConnecté.php');
+  header('location: indexConnecte.php');
 }
 if (isset($_SESSION['error'])) {
   echo "
@@ -359,7 +359,7 @@ if (isset($_SESSION['success'])) {
       var prixmaxfiltre = document.getElementById("PrixMax").value;
 
 
-      if (prixminfiltre > prixmaxfiltre)
+      if (parseInt(prixminfiltre) > parseInt(prixmaxfiltre))
         document.getElementById("alertprix").className = "d-block";
       else {
         document.getElementById("alertprix").className = "d-none";
