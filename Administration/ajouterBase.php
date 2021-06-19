@@ -34,7 +34,7 @@ $quantite =  $_GET['quantite'];
 $prix =  $_GET['prix'];
 $niveau = $_GET['niveau'];
 $description = $_GET['description'];
-if ($nom=="" || strlen($nom)>64 || strlen($marque)>32 /*|| !(file_exists($image))*/ || $quantite<0 || $prix<0){
+if ($nom=="" || strlen($nom)>64 || strlen($marque)>32 /*|| !(file_exists($image))*/ || $quantite<0 || $prix<0 || !is_numeric($prix) || !is_numeric($quantite) || !is_numeric($niveau)){
     
 
     echo '<!DOCTYPE html>
@@ -53,7 +53,7 @@ if ($nom=="" || strlen($nom)>64 || strlen($marque)>32 /*|| !(file_exists($image)
             <p>Quantité (doit être positive) : </p><input type="text" name="quantite" value="' .$quantite. '"/>
             <p>Prix (doit être positif) : </p><input type="text" name="prix" value="' .$prix. '"/>
             <p>description : </p><input type="text" name="description" value="' . $description . '"/>
-            <p>niveau : </p><input type="text" name="niveau" value="' . $niveau . '"/>
+            <p>niveau (doit être compris entre 0 et 9) : </p><input type="text" name="niveau" value="' . $niveau . '"/>
             <div class="masquer"><p></p><input type="text" id="id" name="id" value="'.$id.'" /></div>
             <p></p><input type="submit" value="ajouter" />
         </form>
