@@ -1,5 +1,5 @@
 <?php
-require("../Shop/config/commandes.php");
+require("config/commandes.php");
 $nombredepages = 1;
 
 ?>
@@ -51,6 +51,7 @@ $nombredepages = 1;
           <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
           <circle cx="12" cy="13" r="4" /></img>
           <strong>Sauce Site</strong>
+          <a href="ajouter.php" class="btn btn-sm btn-outline-secondary">ajouter un produit</a>
         </a>
         <a href="deconnection.php">déconnection</a>
       </div>
@@ -167,13 +168,16 @@ $nombredepages = 1;
     foreach ($sauces as $sauce) : ?>
       //PrechargementImages("<?= $sauce->image ?>");
     <?php endforeach; ?>
+
     function AffichageParDefaut() {
       Affichage();
     }
+
     function PrechargementImages(url) {
       var img = new Image();
       img.src = url;
     }
+
     var unefoissurdeux = true;
     document.getElementById("BoutonCote").onclick = function() {
       if (unefoissurdeux) {

@@ -1,22 +1,22 @@
 <?php
 
-require 'config/accesbase.php';
+require 'accesbase.php';
 switch ($_GET['tri']) {
 
   case 0:
-    $tri = "SELECT * FROM sauce ORDER BY prix DESC";
+    $tri = "SELECT * FROM sauce WHERE quantite > 0  ORDER BY prix DESC";
     break;
   case 1:
-    $tri = "SELECT * FROM sauce ORDER BY prix ASC";
+    $tri = "SELECT * FROM sauce WHERE quantite > 0 ORDER BY prix ASC";
     break;
   case 2:
-    $tri = "SELECT * FROM sauce ORDER BY nom DESC";
+    $tri = "SELECT * FROM sauce WHERE quantite > 0 ORDER BY nom DESC";
     break;
   case 3:
-    $tri = "SELECT * FROM sauce ORDER BY nom ASC";
+    $tri = "SELECT * FROM sauce WHERE quantite > 0 ORDER BY nom ASC";
     break;
   default:
-    $tri = "SELECT * FROM sauce ORDER BY id DESC";
+    $tri = "SELECT * FROM sauce WHERE quantite > 0 ORDER BY id DESC";
     break;
 }
 
@@ -47,12 +47,9 @@ foreach ($data as $sauce) {
             <h4 class="card-text" style="text-align:center"> ' . $sauce->nom . ' </h4>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <form action="modifierSauce.php" method="get">
-                  <div class="invisible"><input type="text" id="id" name="id" value="'.$sauce->id.'" /></div>
-                  <input type="submit" value="modifier" />                
-                </form>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Ajouter au panier</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Acheter</button>
               </div>
-              <small class="text-muted">quantité : ' . $sauce->quantite . ' </small>
               <small class="text-muted"> ' . $sauce->prix . ' €</small>
             </div>
           </div>
@@ -109,4 +106,3 @@ if ($page > $nombredepages) {
 echo json_encode($obj);
 
 $req->closeCursor();
-

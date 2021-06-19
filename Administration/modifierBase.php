@@ -1,6 +1,6 @@
 <?php
 
-require '../Shop/config/accesbase.php';
+require 'config/accesbase.php';
 
 
 
@@ -11,7 +11,9 @@ $image =  $_GET['image'];
 $quantite =  $_GET['quantite'];
 $prix =  $_GET['prix'];
 $id =  $_GET['id'];
-if ($nom=="" || strlen($nom)>64 || strlen($marque)>32 /*|| !(file_exists($image))*/ || $quantite<0 || $prix<0){
+$niveau = $_GET['niveau'];
+$description = $_GET['description'];
+if ($nom=="" || strlen($nom)>64 || strlen($marque)>32 || $niveau<0 || $niveau>9 || $quantite<0 || $prix<0 || !is_numeric($prix) || !is_numeric($quantite) || !is_numeric($niveau)){
     $chaine = "SELECT * FROM sauce WHERE id = $id";
 
 
@@ -40,6 +42,8 @@ if ($nom=="" || strlen($nom)>64 || strlen($marque)>32 /*|| !(file_exists($image)
             <p>URL (doit pointer vers une image) : </p><input type="text" name="image" value="' . $sauce->image . '"/>
             <p>Quantité (doit être positive) : </p><input type="text" name="quantite" value="' . $sauce->quantite . '"/>
             <p>Prix (doit être positif) : </p><input type="text" name="prix" value="' . $sauce->prix . '"/>
+            <p>Description : </p><input type="text" name="description" value="' . $sauce->description . '"/>
+            <p>Niveau (doit être compris entre 0 et 9) : </p><input type="text" name="niveau" value="' . $sauce->niveau . '"/>
             <div class="masquer"><p></p><input type="text" id="id" name="id" value="'.$sauce->id.'" /></div>
             <p></p><input type="submit" value="modifier" />
         </form>
@@ -48,7 +52,7 @@ if ($nom=="" || strlen($nom)>64 || strlen($marque)>32 /*|| !(file_exists($image)
 }
 else
 {
-    $chaine = "UPDATE sauce SET nom='$nom', image='$image', quantite='$quantite', prix='$prix', marque='$marque'  WHERE id='$id'";
+    $chaine = "UPDATE sauce SET nom='$nom', image='$image', quantite=$quantite, prix=$prix, marque='$marque', description='$description', niveau=$niveau  WHERE id=$id";
 
     $req = $access->prepare($chaine);
 
