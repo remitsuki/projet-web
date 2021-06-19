@@ -1,6 +1,6 @@
 <?php
 	
-	include '../config/sessionN.php';
+	include 'config/sessionN.php';
 
     
 	if(isset($_POST['signup'])){
@@ -17,7 +17,7 @@
 		$_SESSION['email'] = $email;
 
 		if(!(filter_var($email, FILTER_VALIDATE_EMAIL))){
-   		   $_SESSION['error'] = 'Enter a valid email';
+   		   $_SESSION['error'] = 'Entrer une adresse mail valide';
 	           header('location: index.php');
 	           exit();
                  }
@@ -41,7 +41,7 @@
 					$stmt->execute(['email'=>$email, 'password'=>$password, 'firstname'=>$firstname, 'lastname'=>$lastname,'address'=>$address]);
 					$userid = $access->lastInsertId();
 				$stmt->closeCursor();
-				header('Location:../Shop/config/deconnexion.php');
+				header('Location:config/deconnexion.php');
 
 			}
 
