@@ -3,21 +3,21 @@ require("config/commandes.php");
 $nombredepages = 1;
 
 include 'config/sessionN.php';
-if(isset($_SESSION['user'])){
+if (isset($_SESSION['user'])) {
   header('location: indexConnecté.php');
 }
-if(isset($_SESSION['error'])){
+if (isset($_SESSION['error'])) {
   echo "
     <div class='callout callout-danger text-center'>
-      <p>".$_SESSION['error']."</p> 
+      <p>" . $_SESSION['error'] . "</p> 
     </div>
   ";
   unset($_SESSION['error']);
 }
-if(isset($_SESSION['success'])){
+if (isset($_SESSION['success'])) {
   echo "
     <div class='callout callout-success text-center'>
-      <p>".$_SESSION['success']."</p> 
+      <p>" . $_SESSION['success'] . "</p> 
     </div>
   ";
   unset($_SESSION['success']);
@@ -80,9 +80,9 @@ if(isset($_SESSION['success'])){
                 <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
                 <label for="floatingPassword">Mot de passe</label>
               </div>
-              <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+              <button class="w-100 btn btn-lg btn-primary" type="submit">Connexion</button>
               <div class="form-floating text-white">
-                <h6 class = "mx-auto">
+                <h6 class="mx-auto">
                   Pas encore <a href="../Inscription.php">inscrit</a> ?
                 </h6>
               </div>
@@ -156,11 +156,11 @@ if(isset($_SESSION['success'])){
                 <span data-feather="plus-circle"></span>
               </a>
             </h6>
-           
+
             <li class="nav-item mt-3 ps-3">
               <div class="input-group">
                 <label for="PrixMin" class="form-label me-1 mt-auto mb-auto">Min : </label>
-                <input name="prixmin" type="number" class="form-control" aria-label="Prix minimum" min="0" id="PrixMin" value ="0" oninput = "ChangerMin()">
+                <input name="prixmin" type="number" class="form-control" aria-label="Prix minimum" min="0" id="PrixMin" value="0" oninput="ChangerMin()">
                 <div class="input-group-append">
                   <span class="input-group-text">€</span>
                 </div>
@@ -169,13 +169,13 @@ if(isset($_SESSION['success'])){
             <li class="nav-item mt-2 ps-3">
               <div class="input-group">
                 <label for="PrixMax" class="form-label me-1 mt-auto mb-auto">Max : </label>
-                <input name="prixmax" type="number" class="form-control" aria-label="Prix maximum" min="0" id="PrixMax" value ="0">
+                <input name="prixmax" type="number" class="form-control" aria-label="Prix maximum" min="0" id="PrixMax" value="0">
                 <div class="input-group-append">
                   <span class="input-group-text">€</span>
                 </div>
               </div>
             </li>
-            <li class ="d-none" id = "alertprix">
+            <li class="d-none" id="alertprix">
               <div class="text-danger ps-3">
                 Le minimum ne peut pas être inférieur au maximum.
               </div>
@@ -185,7 +185,7 @@ if(isset($_SESSION['success'])){
                 <label for="selecteurforce" class="form-label ps-3">Force :</label>
                 <input name="force" type="range" class="form-range mt-2" min="0" max="9" id="selecteurforce" oninput="ChangerValeurForce()" value="0" style="width:80%">
                 <div class="input-group-append ms-2">
-                  <span class="input-group-text" id ="forceaffichee">&nbsp;</span>
+                  <span class="input-group-text" id="forceaffichee">&nbsp;</span>
                 </div>
               </div>
             </li>
@@ -208,7 +208,7 @@ if(isset($_SESSION['success'])){
 
             </div>
           </div>
-          <nav aria-label="Page navigation example">
+          <nav aria-label="Page navigation example" class = "mt-3">
             <ul class="pagination justify-content-center" id="pagination">
 
             </ul>
@@ -222,9 +222,14 @@ if(isset($_SESSION['success'])){
     <div class="container">
       <iframe src="https://open.spotify.com/embed/track/2ChNJTAMVSDEc8hsdiF1Vs" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
       <p class="float-end mb-1">
-        <a href="#">Back to top</a>
+        <a href="#" class="text-decoration-none">Retour en haut
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-up" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 3.707 2.354 9.354a.5.5 0 1 1-.708-.708l6-6z"></path>
+            <path fill-rule="evenodd" d="M7.646 6.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 7.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"></path>
+          </svg>
+        </a>
       </p>
-      <p class="mb-0">Suivez-nous sur <a href="https://www.instagram.com/rawsauce_._/" target="_blank">Instagram
+      <p class="mb-0">Suivez-nous sur <a href="https://www.instagram.com/rawsauce_._/" target="_blank" class="text-decoration-none">Instagram
           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Instagram.svg/1200px-Instagram.svg.png" width="17"></a></p>
 
     </div>
@@ -336,7 +341,7 @@ if(isset($_SESSION['success'])){
     function ChangerValeurForce() {
       var force = document.getElementById("selecteurforce").value;
 
-      if(force > 0)
+      if (force > 0)
         document.getElementById("forceaffichee").innerHTML = force;
       else
         document.getElementById("forceaffichee").innerHTML = "&nbsp;";
@@ -353,27 +358,24 @@ if(isset($_SESSION['success'])){
       Affichage();
     };
 
-    function Filtrer()
-    {
+    function Filtrer() {
       var prixminfiltre = document.getElementById("PrixMin").value;
       var prixmaxfiltre = document.getElementById("PrixMax").value;
 
 
-      if(prixminfiltre > prixmaxfiltre)
-        document.getElementById("alertprix").className ="d-block";
-      else
-      {
-        document.getElementById("alertprix").className ="d-none";
+      if (prixminfiltre > prixmaxfiltre)
+        document.getElementById("alertprix").className = "d-block";
+      else {
+        document.getElementById("alertprix").className = "d-none";
         Affichage();
       }
     }
-    
-    function ChangerMin()
-    {
-      
+
+    function ChangerMin() {
+
       var min = document.getElementById("PrixMin").value;
       document.getElementById("PrixMax").min = min;
-      if(parseInt(document.getElementById("PrixMax").value) < parseInt(min))
+      if (parseInt(document.getElementById("PrixMax").value) < parseInt(min))
         document.getElementById("PrixMax").value = min;
     }
   </script>
