@@ -4,7 +4,7 @@ $nombredepages = 1;
 
 include 'config/sessionN.php';
 if (isset($_SESSION['user'])) {
-  header('location: indexConnecte.php');
+  header('location: index.php');
 }
 if (isset($_SESSION['error'])) {
   echo "
