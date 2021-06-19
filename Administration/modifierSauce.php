@@ -31,7 +31,7 @@ echo '<!DOCTYPE html>
         <p>URL : </p><input type="text" name="image" value="' . $sauce->image . '"/>
         <p>Quantité : </p><input type="text" name="quantite" value="' . $sauce->quantite . '"/>
         <p>Prix : </p><input type="text" name="prix" value="' . $sauce->prix . '"/>
-        <p>Description : </p><input type="text" name="description" value="' . $sauce->description . '"/>
+        <p>Description : </p><input type="text" name="textedescription" value="' . $sauce->textedescription . '"/>
         <p>Niveau : </p><input type="text" name="niveau" value="' . $sauce->niveau . '"/>
         <div class="masquer"><p></p><input type="text" id="id" name="id" value="'.$sauce->id.'" /></div>
         <input type="submit" value="modifier" />
