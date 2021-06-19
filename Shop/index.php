@@ -73,14 +73,14 @@ if (isset($_SESSION['success'])) {
               <h1 class="h3 mb-3 fw-normal text-white">Connectez vous !</h1>
 
               <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <input type="email" class="form-control" id="floatingInput" name"email" placeholder="name@example.com">
                 <label for="floatingInput">Adresse mail</label>
               </div>
               <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
                 <label for="floatingPassword">Mot de passe</label>
               </div>
-              <button class="w-100 btn btn-lg btn-primary" type="submit">Connexion</button>
+              <button class="w-100 btn btn-lg btn-primary" name="login" type="submit">Connexion</button>
               <div class="form-floating text-white">
                 <h6 class="mx-auto">
                   Pas encore <a href="../Inscription.php">inscrit</a> ?
