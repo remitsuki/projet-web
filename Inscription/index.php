@@ -8,7 +8,7 @@
   	<meta charset="utf-8">
 <title>Shop - Sauce Site</title> 
 </head>
-<?php include '../config/sessionN.php'; ?>
+<?php include 'config/sessionN.php'; ?>
 <?php
   if(isset($_SESSION['user'])){
     header('location: ../Shop/index.php');
