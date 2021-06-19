@@ -65,43 +65,62 @@ if (isset($_SESSION['success'])) {
             <p class="text-muted">Une sauce est une préparation culinaire, froide, tiède ou chaude, destinée à être servie avec un mets salé ou sucré. Composée d'un simple jus ou d'un apprêt très élaboré, la sauce peut servir d'accompagnement, comme la mayonnaise, la béarnaise ou le coulis de fruits, mais aussi d'élément de cuisson, comme pour une daube ou un ragoût. D'une grande diversité, les sauces sont d'une consistance plus ou moins liquide que l'on peut détendre ou épaissir ; elles sont faites à partir de mélange à froid comme la vinaigrette, tiède comme l'émulsion au beurre d'une béarnaise, ou à chaud comme les déglaçages au vin, ou toutes sortes de fonds. Chacune d'elles peut être déclinée et agrémentée d'herbes, aromates, épices, colorants, alcools, mais aussi tomates, jus de fruits, de fromage ou autre foie gras.</p>
           </div>
           <div class="col-sm-4 offset-md-1 py-4">
-            <form action="verifyP.php" method="POST">
-              <h1 class="h3 mb-3 fw-normal text-white">Connectez vous !</h1>
+ <?php if(empty($_POST)) :?> 
+         <form action='verifyP.php' method='POST'>
+          <h1 class='h3 mb-3 fw-normal text-white'>Connectez vous !</h1>
 
-              <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInput" name = "email" placeholder="name@example.com">
-                <label for="floatingInput">Adresse mail</label>
-              </div>
-              <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
-                <label for="floatingPassword">Mot de passe</label>
-              </div>
-              <button class="w-100 btn btn-lg btn-primary" name="login" type="submit">Connexion</button>
-              <div class="form-floating text-white">
-                <h6 class="mx-auto">
-                  Pas encore <a href="../Inscription/">inscrit</a> ?
-                </h6>
-              </div>
-            </form>
+          <div class='form-floating'>
+            <input type='email' class='form-control' id='floatingInput' name='email'  placeholder='name@example.com'>
+            <label for='floatingInput'>Adresse mail</label>
           </div>
+          <div class='form-floating'>
+            <input type='password' class='form-control' id='floatingPassword' name='password'  placeholder='Password'>
+            <label for='floatingPassword'>Mot de passe</label>
+          </div>
+          <button class='w-100 btn btn-lg btn-primary' name='login' type='submit'>Sign in</button>
+          <div class='form-floating text-white'>
+            <h6 class = 'mx-auto'>
+              Pas encore <a href='../Inscription/index.php'>inscrit</a> ?
+            </h6>
+          </div>
+        </form> 
+         </div>
         </div>
       </div>
     </div>
-    <div class="navbar navbar-dark bg-dark shadow-sm">
-      <div class="container">
-        <a href="#" class="navbar-brand d-flex align-items-center">
-          <img src="https://lipn.univ-paris13.fr/~guerif/images/guerif_small.png" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24">
-          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-          <circle cx="12" cy="13" r="4" /></img>
+    <div class='navbar navbar-dark bg-dark shadow-sm'>
+      <div class='container'>
+        <a href='#' class='navbar-brand d-flex align-items-center'>
+          <img src='https://lipn.univ-paris13.fr/~guerif/images/guerif_small.png' width='20' height='20' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true' class='me-2' viewBox='0 0 24 24'>
+          <path d='M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z' />
+          <circle cx='12' cy='13' r='4' /></img>
           <strong>Sauce Site</strong>
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarHeader' aria-controls='navbarHeader' aria-expanded='false' aria-label='Toggle navigation'>
+          <span class='navbar-toggler-icon'></span>
         </button>
       </div>
     </div>
   </header>
-
+ <?php else : ?>
+  </div>
+  </div>
+</div>
+</div>
+<div class='navbar navbar-dark bg-dark shadow-sm'>
+<div class='container'>
+  <a href='#' class='navbar-brand d-flex align-items-center'>
+    <img src='https://lipn.univ-paris13.fr/~guerif/images/guerif_small.png' width='20' height='20' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true' class='me-2' viewBox='0 0 24 24'>
+    <path d='M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z' />
+    <circle cx='12' cy='13' r='4' /></img>
+    <strong>Sauce Site</strong>
+  </a>
+  <a href='../config/deconnexion.php'>déconnection</a>
+  </div>
+  </div>
+</header>
+<?php endif; ?>
+  
   <div class="container-fluid">
     <div class="row">
       <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
