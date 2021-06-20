@@ -1,5 +1,5 @@
 <?php
-	include 'config/sessionN.php';
+	include '../config/sessionN.php';
 	
 	
 
@@ -24,12 +24,12 @@
 						}
 					}
 					else{
-						$_SESSION['error'] = 'Identifiant ou mot de passe incorrect';
+						$_SESSION['error'] = 'Incorrect Password';
 					}
 				
 			}
 			else{
-				$_SESSION['error'] = 'Cet email est introuvable';
+				$_SESSION['error'] = 'Email not found';
 			}
 		}
 		catch(PDOException $e){
@@ -38,7 +38,7 @@
 
 	}
 	else{
-		$_SESSION['error'] = 'Saisissez les identifiants de connexion';
+		$_SESSION['error'] = 'Input login credentails first';
 	}
 
 	$stmt->closeCursor();
