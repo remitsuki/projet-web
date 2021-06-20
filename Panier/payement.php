@@ -43,7 +43,7 @@
 <div class="container">
     <main>
         <div class="py-5 text-center">
-            <img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+
             <h2>Payement effectué</h2>
             <p class="lead"> vous possédez maintenant une âme de moins</p>
         </div>
@@ -55,7 +55,7 @@
 <footer class="my-5 pt-5 text-muted text-center text-small">
     <p class="mb-1">&copy; 2021 Sauce Co</p>
     <ul class="list-inline">
-        <li class="list-inline-item"><a href="index.php">home</a></li>
+        <li class="list-inline-item"><a href="../Shop/index.php"> Home</a></li>
     </ul>
 </footer>
 

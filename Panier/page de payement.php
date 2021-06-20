@@ -11,11 +11,7 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/checkout/">
 
-    <?php
-    if(!isset($_SESSION['user'])){
-        header('location:../Shop/index.php');
-    }
-    ?>
+
 
     <!-- Bootstrap core CSS -->
     <!-- <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">  -->
@@ -25,6 +21,11 @@
 
 
     <style>
+
+
+
+
+
         .bd-placeholder-img {
             font-size: 1.125rem;
             text-anchor: middle;
@@ -43,12 +44,26 @@
             -webkit-appearance: none; 
             margin: 0; 
         }
+        div.a {
+            text-align: center !important;
+        }
+
     </style>
 
 
     <!-- Custom styles for this template -->
     <link href="form-validation.css" rel="stylesheet">
 </head>
+<?php
+if (isset($_POST['button1']))
+{
+    session_start();
+    $_SESSION[cart] = array();
+}
+
+?>
+
+
 <body class="bg-light">
 
     <div class="container">
@@ -56,7 +71,73 @@
             <div class="py-5 text-center">
                 <img class="d-block mx-auto mb-4" src="https://lipn.univ-paris13.fr/~guerif/images/guerif_small.png" alt="" width="72" height="57">
                 <h2>Checkout form</h2>
-                <p class="lead"> yooooooooooooooooooo</p>
+                <form method="POST" action=''>
+                    <input type="submit" name="button1"  value="vider panier">
+                </form>
+                <?php
+
+                session_start();
+                require '../config/accesbdd.php';
+                $req = $access->prepare("SELECT * FROM sauce WHERE quantite > 0");
+                $req->execute();
+                $data = $req->fetchAll(PDO::FETCH_OBJ);
+                $imgcasse = "'https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/No_image_available_450_x_600.svg/450px-No_image_available_450_x_600.svg.png'";
+                $sauce=$data;
+                $ptot=0;
+                //$sauce[$_SESSION[cart][$i]]->nom
+                for ($i = 0; $i <= count( $_SESSION[cart])-1; $i++)
+                    {
+                    foreach ($data as $sauce) {
+                        if($sauce->id==$_SESSION[cart][$i]){
+                            $aux=$sauce;
+                        }
+                    }
+                        ?>
+                          <li class="list-group-item d-flex justify-content-between lh-sm">
+                            <div>
+
+                              <h6 class="my-0">
+
+                                  <?php
+                                  session_start();
+
+                                  echo $aux->nom;
+                                  ?>
+                                  <?php $obj=     '
+                                  <form action="enlever_sauce.php?id='.$aux->id.'" method="post">
+                                      <input type="submit" name="button3"
+                                             class="button" value="retirer du panier" />
+                                  </form>
+                                  ';
+                                  echo $obj;
+                                  ?>
+                              </h6>
+                                <div class="a">
+                              <small class="text-muted"><?php echo str_pad(mb_strimwidth($aux->description, 0, 200, "..."),198,'_',STR_PAD_BOTH); ?></small>
+                                </div>
+                            </div>
+                            <span class="text-muted"><?php echo $aux->prix.'€'; $ptot=$ptot+$aux->prix; ?></span>
+                          </li>
+                <?php
+
+                    }
+                     ?>
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0"><?php
+                            session_start();
+
+                            echo "Total";
+                            ?></h6>
+
+
+                    </div>
+                    <span class="text-muted"><?php echo $ptot.'€'; ?></span>
+                </li>
+
+
+
+
             </div>
 
             <div class="row g-5">
@@ -122,7 +203,7 @@
 
                 <input type="submit" name="signup" value="Register" class="btn btn-info btn-block">
 
-                        <a href="payement.php"> Home</a>
+                        <a href="../Shop/index.php"> Home</a>
                 </div>
 
             </div>
