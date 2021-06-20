@@ -57,7 +57,10 @@
 <?php
 if (isset($_POST['button1']))
 {
-    session_start();
+
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
     $_SESSION[cart] = array();
 }
 
@@ -71,12 +74,16 @@ if (isset($_POST['button1']))
             <div class="py-5 text-center">
                 <img class="d-block mx-auto mb-4" src="https://lipn.univ-paris13.fr/~guerif/images/guerif_small.png" alt="" width="72" height="57">
                 <h2>Checkout form</h2>
+
+
                 <form method="POST" action=''>
                     <input type="submit" name="button1"  value="vider panier">
                 </form>
                 <?php
 
-                session_start();
+                if (session_status() === PHP_SESSION_NONE) {
+                    session_start();
+                }
                 require '../config/accesbdd.php';
                 $req = $access->prepare("SELECT * FROM sauce WHERE quantite > 0");
                 $req->execute();
@@ -99,7 +106,9 @@ if (isset($_POST['button1']))
                               <h6 class="my-0">
 
                                   <?php
-                                  session_start();
+                                  if (session_status() === PHP_SESSION_NONE) {
+                                      session_start();
+                                  }
 
                                   echo $aux->nom;
                                   ?>
@@ -125,7 +134,9 @@ if (isset($_POST['button1']))
                 <li class="list-group-item d-flex justify-content-between lh-sm">
                     <div>
                         <h6 class="my-0"><?php
-                            session_start();
+                            if (session_status() === PHP_SESSION_NONE) {
+                                session_start();
+                            }
 
                             echo "Total";
                             ?></h6>
@@ -199,9 +210,16 @@ if (isset($_POST['button1']))
                                 </div>
                             </div>
                         </div>
-
-
-                <input type="submit" name="signup" value="Register" class="btn btn-info btn-block">
+                    <?php
+                        if(!isset($_SESSION['user'])){
+                        echo "vous devez être connecté pour payer";
+                        }
+                    ?>
+                <input type="submit" name="signup" value="payer" <?php
+                if(!isset($_SESSION['user'])){
+                    echo "disabled";
+                } ?>
+                       class="btn btn-info btn-block">
 
                         <a href="../Shop/index.php"> Home</a>
                 </div>

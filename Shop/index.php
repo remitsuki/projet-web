@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 require("config/commandes.php");
 $nombredepages = 1;
 
@@ -63,7 +65,9 @@ if(isset($_SESSION['success'])){
 <?php
 if (isset($_POST['button1']))
 {
-    session_start();
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
     $_SESSION[cart] = array();
 }
 ?>
