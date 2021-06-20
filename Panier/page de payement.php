@@ -73,7 +73,7 @@ if (isset($_POST['button1']))
         <main>
             <div class="py-5 text-center">
                 <img class="d-block mx-auto mb-4" src="https://lipn.univ-paris13.fr/~guerif/images/guerif_small.png" alt="" width="72" height="57">
-                <h2>Checkout form</h2>
+                <h2>Panier</h2>
 
 
                 <form method="POST" action=''>
@@ -160,15 +160,18 @@ if (isset($_POST['button1']))
                 </div>
 
                         <h4 class="mb-3">Payment</h4>
+                <?php
+                if(isset($_SESSION['user'])){
 
+                ?>
                         <div class="my-3">
                             <div class="form-group has-feedback">
                                 <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
-                                <label class="form-check-label" for="credit">Credit card</label>
+                                <label class="form-check-label" for="credit">carte de crédit</label>
                             </div>
                             <div class="form-group has-feedback">
                                 <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
-                                <label class="form-check-label" for="debit">Debit card</label>
+                                <label class="form-check-label" for="debit">carte de débit</label>
                             </div>
                             <div class="form-group has-feedback">
                                 <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
@@ -178,16 +181,16 @@ if (isset($_POST['button1']))
 
                         <div class="row gy-3">
                             <div class="col-md-6">
-                                <label for="cc-name" class="form-label">Name on card</label>
+                                <label for="cc-name" class="form-label">Nom sur la carte</label>
                                 <input type="text" class="form-control" id="cc-name" placeholder="" required>
-                                <small class="text-muted">Full name as displayed on card</small>
+
                                 <div class="invalid-feedback">
                                     Name on card is required
                                 </div>
                             </div>
 
                             <div class="col-md-6">
-                                <label for="cc-number" class="form-group has-feedback">Credit card number</label>
+                                <label for="cc-number" class="form-group has-feedback">numéro de carte</label>
                                 <input type="number" min="0" max="9999999999999999" class="form-control" id="cc-number" placeholder="" required>
                                 <div class="invalid-feedback">
                                     Credit card number is required
@@ -211,6 +214,7 @@ if (isset($_POST['button1']))
                             </div>
                         </div>
                     <?php
+                        }
                         if(!isset($_SESSION['user'])){
                         echo "vous devez être connecté pour payer";
                         }
