@@ -1,26 +1,46 @@
 <?php
 
-require 'accesbase.php';
+require '../../config/accesbdd.php';
+
+if (isset($_GET['force']) && $_GET['force'] > 0 && $_GET['force'] < 10)
+  $force = " AND niveau = " .  $_GET['force'];
+else
+  $force = "";
+
+if (isset($_GET['prixmin']) && isset($_GET['prixmax']) && ($_GET['prixmin'] <= $_GET['prixmax']) && ($_GET['prixmax'] > 0)) {
+  $prixmin = " AND prix >= " . $_GET['prixmin'];
+  $prixmax = " AND prix <= " . $_GET['prixmax'];
+} else {
+  $prixmin = "";
+  $prixmax = "";
+}
+
 switch ($_GET['tri']) {
 
   case 0:
-    $tri = "SELECT * FROM sauce WHERE quantite > 0  ORDER BY prix DESC";
+    $tri = " ORDER BY prix DESC";
     break;
   case 1:
-    $tri = "SELECT * FROM sauce WHERE quantite > 0 ORDER BY prix ASC";
+    $tri = " ORDER BY prix ASC";
     break;
   case 2:
-    $tri = "SELECT * FROM sauce WHERE quantite > 0 ORDER BY nom DESC";
+    $tri = " ORDER BY nom DESC";
     break;
   case 3:
-    $tri = "SELECT * FROM sauce WHERE quantite > 0 ORDER BY nom ASC";
+    $tri = " ORDER BY nom ASC";
+    break;
+  case 4:
+    $tri = " ORDER BY niveau DESC";
+    break;
+  case 5:
+    $tri = " ORDER BY niveau ASC";
     break;
   default:
-    $tri = "SELECT * FROM sauce WHERE quantite > 0 ORDER BY id DESC";
+    $tri = " ORDER BY id DESC";
     break;
 }
 
-$req = $access->prepare($tri);
+$req = $access->prepare("SELECT * FROM sauce WHERE quantite > 0" . $force . $prixmin . $prixmax . $tri);
 
 $req->execute();
 
@@ -33,23 +53,26 @@ if (($req->rowCount() + 9) / 9 < $page || $page < 1) {
 }
 
 $nbproduits = 0;
+$imgcasse = "'https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/No_image_available_450_x_600.svg/450px-No_image_available_450_x_600.svg.png'";
+
+
 foreach ($data as $sauce) {
-  if (strlen($sauce->image) < 4) {
-    $sauce->image = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/No_image_available_450_x_600.svg/450px-No_image_available_450_x_600.svg.png";
-  }
   if ($nbproduits < $page * 9 and $nbproduits >= $page * 9 - 9) {
     $obj['result'] = $obj['result'] .
       '<div class="col">
         <div class="card shadow-sm">
           <title> ' . $sauce->nom . ' </title>
-          <img src=" ' . $sauce->image . ' " style="max-height: 500px;">
+          <img src=" ' . $sauce->image . ' " style="max-height: 500px;" onerror ="this.src = ' . $imgcasse . '">
           <div class="card-body">
             <h4 class="card-text" style="text-align:center"> ' . $sauce->nom . ' </h4>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Ajouter au panier</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Acheter</button>
+                <form action="modifierSauce.php" method="get">
+                  <div class="invisible"><input type="text" id="id" name="id" value="'.$sauce->id.'" /></div>
+                  <input type="submit" class="btn btn-sm btn-outline-secondary" value="Modifier" />                
+                </form>
               </div>
+              <small class="text-muted">quantité : ' . $sauce->quantite . ' </small>
               <small class="text-muted"> ' . $sauce->prix . ' €</small>
             </div>
           </div>
@@ -106,3 +129,4 @@ if ($page > $nombredepages) {
 echo json_encode($obj);
 
 $req->closeCursor();
+

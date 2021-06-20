@@ -3,21 +3,6 @@ require("config/commandes.php");
 $nombredepages = 1;
 
 include 'config/sessionN.php';
-
-if (isset($_SESSION['error'])) {
-    echo "
-      <p>" . $_SESSION['error'] . "</p> 
-  ";
-    unset($_SESSION['error']);
-}
-if (isset($_SESSION['success'])) {
-    echo "
-      <p>" . $_SESSION['success'] . "</p> 
-  ";
-    unset($_SESSION['success']);
-}
-
-
 ?>
 
 <!doctype html>
@@ -78,6 +63,15 @@ if (isset($_SESSION['success'])) {
                                     <label for='floatingPassword'>Mot de passe</label>
                                 </div>
                                 <button class='w-100 btn btn-lg btn-primary' name='login' type='submit'>Sign in</button>
+                                <?php
+                                if (isset($_SESSION['error'])) {
+                                    echo '
+                                        <div class="text-danger ps-3">
+                                            Identifiant ou mot de passe incorrect.
+                                        </div>';
+                                    unset($_SESSION['error']);
+                                }
+                                ?>
                                 <div class='form-floating text-white'>
                                     <h6 class='mx-auto'>
                                         Pas encore <a href='../Inscription/index.php'>inscrit</a> ?
@@ -85,7 +79,14 @@ if (isset($_SESSION['success'])) {
                                 </div>
                             </form>
                         <?php else : ?>
-                            <a href='config/deconnexion.php'>Se déconnecter</a>
+                            <h4>
+                                Bienvenue
+                            </h4>
+                            <a href='config/deconnexion.php'>
+                                <button class='w-100 btn btn-lg btn-primary'>
+                                    Se déconnecter
+                                </button>
+                            </a>
                         <?php endif; ?>
 
                     </div>
@@ -95,7 +96,7 @@ if (isset($_SESSION['success'])) {
         <div class='navbar navbar-dark bg-dark shadow-sm'>
             <div class='container'>
                 <a href='#' class='navbar-brand d-flex align-items-center'>
-                    <img src='https://lipn.univ-paris13.fr/~guerif/images/guerif_small.png' width='20' height='20' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true' class='me-2' viewBox='0 0 24 24'>
+                    <img src='../IconeSauce.png' width='20' height='20' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true' class='me-2' viewBox='0 0 24 24'>
                     <path d='M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z' />
                     <circle cx='12' cy='13' r='4' /></img>
                     <strong>Sauce Site</strong>
@@ -111,7 +112,7 @@ if (isset($_SESSION['success'])) {
                     }
                     echo
                     '<button type="submit" name="button8" class="btn btn-success">
-                    <span id = "NombreProduitPanier">'. count($_SESSION['cart']) .'</span>
+                    <span id = "NombreProduitPanier">' . count($_SESSION['cart']) . '</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
                         <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
                     </svg>
@@ -215,10 +216,7 @@ if (isset($_SESSION['success'])) {
                         <li class="nav-item mt-1 mx-auto">
                             <a href="#" id="reset">Réinitialiser la selection</a>
                         </li>
-
-
                     </ul>
-
                 </div>
             </nav>
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -259,19 +257,10 @@ if (isset($_SESSION['success'])) {
         var page = 1;
         var tri = 69;
 
-        <?php $sauces = RecuperationTable();
-        foreach ($sauces as $sauce) : ?>
-            //PrechargementImages("<?= $sauce->image ?>");
-        <?php endforeach; ?>
-
         function AffichageParDefaut() {
             Affichage();
         }
-
-        function PrechargementImages(url) {
-            var img = new Image();
-            img.src = url;
-        }
+        
         var unefoissurdeux = true;
         document.getElementById("BoutonCote").onclick = function() {
             if (unefoissurdeux) {
@@ -398,8 +387,7 @@ if (isset($_SESSION['success'])) {
                 document.getElementById("PrixMax").value = min;
         }
 
-        function AjouterPanier(idproduit)
-        {
+        function AjouterPanier(idproduit) {
             $.ajax({
                 type: "GET",
                 url: 'config/ajouter_panier.php',
@@ -408,7 +396,7 @@ if (isset($_SESSION['success'])) {
                     idproduit: idproduit,
                 },
                 success: function(obj) {
-                    document.getElementById("NombreProduitPanier").innerHTML = "<?php count($_SESSION['cart']) ?>";
+                    document.getElementById("NombreProduitPanier").innerHTML = parseInt(document.getElementById("NombreProduitPanier").innerHTML) + 1;
                 },
             });
         }

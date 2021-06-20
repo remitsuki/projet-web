@@ -1,6 +1,6 @@
 <?php
 
-require 'config/accesbase.php';
+require '../config/accesbdd.php';
 
 $identifiant =  $_GET['id'];
 $chaine = "SELECT * FROM sauce WHERE id = $identifiant";

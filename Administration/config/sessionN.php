@@ -1,5 +1,5 @@
 <?php
-	include 'accesbase.php';
+	include '../../config/accesbdd.php';
 	session_start();
 
 	if(isset($_SESSION['admin'])){

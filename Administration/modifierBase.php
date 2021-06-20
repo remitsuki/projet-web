@@ -1,6 +1,6 @@
 <?php
 
-require 'config/accesbase.php';
+require '../config/accesbdd.php';
 
 
 $nom =  $_GET['nom'];

@@ -1,6 +1,6 @@
 <?php
 
-require 'config/accesbase.php';
+require '../config/accesbdd.php';
 
 $chaine = "SELECT id FROM sauce ORDER BY id DESC";
 

@@ -38,3 +38,5 @@ function supprimer($id)
     $req->closeCursor();
   }
 }
+
+?>

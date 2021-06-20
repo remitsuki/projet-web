@@ -29,7 +29,7 @@
 				
 			}
 			else{
-				$_SESSION['error'] = 'Cet email est introuvable';
+				$_SESSION['error'] = 'Identifiant ou mot de passe incorrect';
 			}
 		}
 		catch(PDOException $e){
