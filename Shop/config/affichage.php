@@ -7,13 +7,10 @@ if (isset($_GET['force']) && $_GET['force'] > 0 && $_GET['force'] < 10)
 else
   $force = "";
 
-if (isset($_GET['prixmin']) && isset($_GET['prixmax']) && ($_GET['prixmin'] <= $_GET['prixmax']) && ($_GET['prixmax'] > 0))
-{
+if (isset($_GET['prixmin']) && isset($_GET['prixmax']) && ($_GET['prixmin'] <= $_GET['prixmax']) && ($_GET['prixmax'] > 0)) {
   $prixmin = " AND prix >= " . $_GET['prixmin'];
   $prixmax = " AND prix <= " . $_GET['prixmax'];
-}
-else
-{
+} else {
   $prixmin = "";
   $prixmax = "";
 }
@@ -60,35 +57,27 @@ $nbproduits = 0;
 $imgcasse = "'https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/No_image_available_450_x_600.svg/450px-No_image_available_450_x_600.svg.png'";
 global $gid;
 
-if(isset($_POST['button1'])) {
-    header("Location: ../../Panier/payement");
+if (isset($_POST['button1'])) {
+  header("Location: ../../Panier/payement");
 }
-if(isset($_POST['button2'])) {
-    echo "This is Button2 that is selected";
+if (isset($_POST['button2'])) {
+  echo "This is Button2 that is selected";
 }
 
 foreach ($data as $sauce) {
-    $gid=$sauce->id;
+  $gid = $sauce->id;
 
   if ($nbproduits < $page * 9 and $nbproduits >= $page * 9 - 9) {
     $obj['result'] = $obj['result'] .
       '<div class="col">
         <div class="card shadow-sm">
           <title> ' . $sauce->nom . ' </title>
-          <img src=" ' . $sauce->image . ' " style="max-height: 500px;" onerror ="this.src = '.$imgcasse .'">
+          <img src=" ' . $sauce->image . ' " style="max-height: 500px;" onerror ="this.src = ' . $imgcasse . '">
           <div class="card-body">
             <h4 class="card-text" style="text-align:center"> ' . $sauce->nom . ' </h4>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <form action="config/ajouter_panier.php?id=' . $sauce->id . '" method="post">
-                    <input type="submit" name="button1"
-                            class="button" value="ajouter au panier"/>
-                </form>
-                
-                <form action="config/aller_panier.php?id=' . $sauce->id . '" method="post">
-                    <input type="submit" name="button1"
-                            class="button" value="acceder panier" />
-                </form>
+                <input type="submit" name="button1" class="btn btn-sm btn-outline-secondary" value="Ajouter au panier" onclick="AjouterPanier(' . $sauce->id . ')"/>
               </div>
               <small class="text-muted"> ' . $sauce->prix . ' €</small>
             </div>

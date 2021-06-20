@@ -53,7 +53,7 @@ $nombredepages = 1;
           <strong>Sauce Site : Page d'Administration</strong>
           <a href="ajouter.php" class="btn btn-sm btn-outline-secondary">ajouter un produit</a>
         </a>
-        <a href="deconnexion.php">déconnexion</a>
+        <a href="deconnection.php">déconnection</a>
       </div>
     </div>
   </header>
