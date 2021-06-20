@@ -93,9 +93,7 @@ if (isset($_SESSION['success'])) {
 
                        echo '<p class="text-muted">il y a '.count( $_SESSION[cart]).' éléments dans le panier</p>';
                        ?>
-                        <input type="submit" name="button1"
-                               class="w-100 btn btn-lg btn-primary" value="accéder au panier" />
-                    </form>
+                       </form>
                 </div>
             </div>
         </div>
@@ -108,6 +106,17 @@ if (isset($_SESSION['success'])) {
                 <circle cx="12" cy="13" r="4" /></img>
                 <strong>Sauce Site</strong>
             </a>
+            <form action="config/aller_panier.php" method="post">
+                <?php
+
+                if (session_status() === PHP_SESSION_NONE) {
+                    session_start();
+                }
+                   echo  '<input type="submit" name="button8"
+                            class="w-100 btn btn-lg btn-primary" value="accéder au panier" />';
+                echo '<p class="text-muted">il y a '.count( $_SESSION[cart]).' éléments dans le panier</p>';
+                ?>
+            </form>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
