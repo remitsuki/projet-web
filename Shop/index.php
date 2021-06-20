@@ -4,9 +4,7 @@ require("config/commandes.php");
 $nombredepages = 1;
 
 include 'config/sessionN.php';
-if (isset($_SESSION['user'])) {
-    header('location: indexConnecte.php');
-}
+
 if (isset($_SESSION['error'])) {
     echo "
       <p>" . $_SESSION['error'] . "</p> 
