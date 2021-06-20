@@ -3,23 +3,6 @@ require("config/commandes.php");
 $nombredepages = 1;
 
 include 'config/sessionN.php';
-if (isset($_SESSION['user'])) {
-  header('location: indexConnecte.php');
-}
-if (isset($_SESSION['error'])) {
-  echo "
-      <p>" . $_SESSION['error'] . "</p> 
-  ";
-  unset($_SESSION['error']);
-}
-if (isset($_SESSION['success'])) {
-  echo "
-      <p>" . $_SESSION['success'] . "</p> 
-  ";
-  unset($_SESSION['success']);
-}
-
-
 ?>
 
 <!doctype html>
@@ -57,36 +40,6 @@ if (isset($_SESSION['success'])) {
 
 <body onload="AffichageParDefaut()">
   <header>
-    <div class="collapse bg-dark" id="navbarHeader">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-8 col-md-7 py-4">
-            <h4 class="text-white">A propos de nos merveilleuses sauces</h4>
-            <p class="text-muted">Une sauce est une préparation culinaire, froide, tiède ou chaude, destinée à être servie avec un mets salé ou sucré. Composée d'un simple jus ou d'un apprêt très élaboré, la sauce peut servir d'accompagnement, comme la mayonnaise, la béarnaise ou le coulis de fruits, mais aussi d'élément de cuisson, comme pour une daube ou un ragoût. D'une grande diversité, les sauces sont d'une consistance plus ou moins liquide que l'on peut détendre ou épaissir ; elles sont faites à partir de mélange à froid comme la vinaigrette, tiède comme l'émulsion au beurre d'une béarnaise, ou à chaud comme les déglaçages au vin, ou toutes sortes de fonds. Chacune d'elles peut être déclinée et agrémentée d'herbes, aromates, épices, colorants, alcools, mais aussi tomates, jus de fruits, de fromage ou autre foie gras.</p>
-          </div>
-          <div class="col-sm-4 offset-md-1 py-4">
-            <form action="verifyP.php" method="POST">
-              <h1 class="h3 mb-3 fw-normal text-white">Connectez vous !</h1>
-
-              <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInput" name = "email" placeholder="name@example.com">
-                <label for="floatingInput">Adresse mail</label>
-              </div>
-              <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
-                <label for="floatingPassword">Mot de passe</label>
-              </div>
-              <button class="w-100 btn btn-lg btn-primary" name="login" type="submit">Connexion</button>
-              <div class="form-floating text-white">
-                <h6 class="mx-auto">
-                  Pas encore <a href="../Inscription/">inscrit</a> ?
-                </h6>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="navbar navbar-dark bg-dark shadow-sm">
       <div class="container">
         <a href="#" class="navbar-brand d-flex align-items-center">
@@ -95,9 +48,7 @@ if (isset($_SESSION['success'])) {
           <circle cx="12" cy="13" r="4" /></img>
           <strong>Sauce Site</strong>
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+		<a href="../config/deconnexion.php">déconnection</a>
       </div>
     </div>
   </header>
@@ -115,9 +66,10 @@ if (isset($_SESSION['success'])) {
           <ul class="nav flex-column">
 
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-              <span>
-                Trié par :
-              </span>
+              <span>Trié par :</span>
+              <a class="link-secondary" href="#" aria-label="Add a new report">
+                <span data-feather="plus-circle"></span>
+              </a>
             </h6>
             <li class="nav-item">
               <a id="alphabet" class="nav-link" href="#">
@@ -146,48 +98,47 @@ if (isset($_SESSION['success'])) {
             </li>
 
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                <span type="button" data-bs-toggle="collapse" data-bs-target="#PlusDeFiltres" aria-controls="PlusDeFiltres" aria-expanded="false" aria-label="Toggle navigation">Plus de filtres :</span>
+              <span>Plus de filtres :</span>
               <a class="link-secondary" href="#" aria-label="Add a new report">
                 <span data-feather="plus-circle"></span>
               </a>
             </h6>
-            <div id="PlusDeFiltres" class ="collapse">
-              <li class="nav-item mt-3 ps-3">
-                <div class="input-group">
-                  <label for="PrixMin" class="form-label me-1 mt-auto mb-auto">Min : </label>
-                  <input name="prixmin" type="number" class="form-control" aria-label="Prix minimum" min="0" id="PrixMin" value="0" oninput="ChangerMin()">
-                  <div class="input-group-append">
-                    <span class="input-group-text">€</span>
-                  </div>
+           
+            <li class="nav-item mt-3 ps-3">
+              <div class="input-group">
+                <label for="PrixMin" class="form-label me-1 mt-auto mb-auto">Min : </label>
+                <input name="prixmin" type="number" class="form-control" aria-label="Prix minimum" min="0" id="PrixMin" value ="0">
+                <div class="input-group-append">
+                  <span class="input-group-text">€</span>
                 </div>
-              </li>
-              <li class="nav-item mt-2 ps-3">
-                <div class="input-group">
-                  <label for="PrixMax" class="form-label me-1 mt-auto mb-auto">Max : </label>
-                  <input name="prixmax" type="number" class="form-control" aria-label="Prix maximum" min="0" id="PrixMax" value="0">
-                  <div class="input-group-append">
-                    <span class="input-group-text">€</span>
-                  </div>
+              </div>
+            </li>
+            <li class="nav-item mt-2 ps-3">
+              <div class="input-group">
+                <label for="PrixMax" class="form-label me-1 mt-auto mb-auto">Max : </label>
+                <input name="prixmax" type="number" class="form-control" aria-label="Prix maximum" min="0" id="PrixMax" value ="0">
+                <div class="input-group-append">
+                  <span class="input-group-text">€</span>
                 </div>
-              </li>
-              <li class="d-none" id="alertprix">
-                <div class="text-danger ps-3">
-                  Le minimum ne peut pas être inférieur au maximum.
+              </div>
+            </li>
+            <li class ="d-none" id = "alertprix">
+              <div class="text-danger ps-3">
+                Le minimum ne peut pas être inférieur au maximum.
+              </div>
+            </li>
+            <li class="nav-item mt-2">
+              <div class="input-group">
+                <label for="selecteurforce" class="form-label ps-3">Force :</label>
+                <input name="force" type="range" class="form-range mt-2" min="0" max="9" id="selecteurforce" oninput="ChangerValeurForce()" value="0" style="width:80%">
+                <div class="input-group-append ms-2">
+                  <span class="input-group-text" id ="forceaffichee">&nbsp;</span>
                 </div>
-              </li>
-              <li class="nav-item mt-2">
-                <div class="input-group">
-                  <label for="selecteurforce" class="form-label ps-3">Force :</label>
-                  <input name="force" type="range" class="form-range mt-2" min="0" max="9" id="selecteurforce" oninput="ChangerValeurForce()" value="0" style="width:80%">
-                  <div class="input-group-append ms-2">
-                    <span class="input-group-text" id="forceaffichee">&nbsp;</span>
-                  </div>
-                </div>
-              </li>
-              <li class="nav-item mt-5">
-                <button class="w-100 btn btn-lg btn-primary" type="submit" onclick="Filtrer()">Valider la selection</button>
-              </li>
-            </div>
+              </div>
+            </li>
+            <li class="nav-item mt-5">
+              <button class="w-100 btn btn-lg btn-primary" type="submit" onclick="Filtrer()">Valider la selection</button>
+            </li>
             <li class="nav-item mt-1 mx-auto">
               <a href="#" id="reset">Réinitialiser la selection</a>
             </li>
@@ -204,7 +155,7 @@ if (isset($_SESSION['success'])) {
 
             </div>
           </div>
-          <nav aria-label="Page navigation example" class="mt-3">
+          <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center" id="pagination">
 
             </ul>
@@ -218,14 +169,9 @@ if (isset($_SESSION['success'])) {
     <div class="container">
       <iframe src="https://open.spotify.com/embed/track/2ChNJTAMVSDEc8hsdiF1Vs" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
       <p class="float-end mb-1">
-        <a href="#" class="text-decoration-none">Retour en haut
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-up" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 3.707 2.354 9.354a.5.5 0 1 1-.708-.708l6-6z"></path>
-            <path fill-rule="evenodd" d="M7.646 6.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 7.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"></path>
-          </svg>
-        </a>
+        <a href="#">Back to top</a>
       </p>
-      <p class="mb-0">Suivez-nous sur <a href="https://www.instagram.com/rawsauce_._/" target="_blank" class="text-decoration-none">Instagram
+      <p class="mb-0">Suivez-nous sur <a href="https://www.instagram.com/rawsauce_._/" target="_blank">Instagram
           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Instagram.svg/1200px-Instagram.svg.png" width="17"></a></p>
 
     </div>
@@ -337,7 +283,7 @@ if (isset($_SESSION['success'])) {
     function ChangerValeurForce() {
       var force = document.getElementById("selecteurforce").value;
 
-      if (force > 0)
+      if(force > 0)
         document.getElementById("forceaffichee").innerHTML = force;
       else
         document.getElementById("forceaffichee").innerHTML = "&nbsp;";
@@ -354,25 +300,19 @@ if (isset($_SESSION['success'])) {
       Affichage();
     };
 
-    function Filtrer() {
+    function Filtrer()
+    {
       var prixminfiltre = document.getElementById("PrixMin").value;
       var prixmaxfiltre = document.getElementById("PrixMax").value;
 
 
-      if (parseInt(prixminfiltre) > parseInt(prixmaxfiltre))
-        document.getElementById("alertprix").className = "d-block";
-      else {
-        document.getElementById("alertprix").className = "d-none";
+      if(prixminfiltre > prixmaxfiltre)
+        document.getElementById("alertprix").className ="d-block";
+      else
+      {
+        document.getElementById("alertprix").className ="d-none";
         Affichage();
       }
-    }
-
-    function ChangerMin() {
-
-      var min = document.getElementById("PrixMin").value;
-      document.getElementById("PrixMax").min = min;
-      if (parseInt(document.getElementById("PrixMax").value) < parseInt(min))
-        document.getElementById("PrixMax").value = min;
     }
   </script>
 </body>
