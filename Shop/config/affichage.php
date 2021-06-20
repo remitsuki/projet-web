@@ -85,7 +85,10 @@ foreach ($data as $sauce) {
                             class="button" value="ajouter au panier"/>
                 </form>
                 
-
+                <form action="config/aller_panier.php?id=' . $sauce->id . '" method="post">
+                    <input type="submit" name="button1"
+                            class="button" value="acceder panier" />
+                </form>
               </div>
               <small class="text-muted"> ' . $sauce->prix . ' €</small>
             </div>
