@@ -10,6 +10,7 @@ for($i=0;$i < count( $_SESSION[cart]); $i++){
 
         $_SESSION[cart][$i]= $_SESSION[cart][count( $_SESSION[cart])-1];
         array_pop($_SESSION[cart]);
+        header("Location: page de payement.php");
         exit;
 
     }
